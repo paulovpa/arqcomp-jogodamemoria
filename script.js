@@ -228,4 +228,45 @@ function iniciarPartida() {
   atualizarTimer(TEMPO_POR_QUESTAO);
   atualizarChances(CHANCES);
   exibirQuestao(TERMOS[0], 1);
+
+  // Por enquanto na ordem da especificação; o sorteio vem na próxima etapa.
+  const ordemCards = [];
+  for (let i = 0; i < TERMOS.length; i++) {
+    ordemCards.push(i);
+  }
+  montarTabuleiro(ordemCards);
+}
+
+// ===== Tabuleiro 4x4 =====
+const tabuleiro = document.getElementById("tabuleiro");
+
+// Palavras longas demais para o card de 100px: o "\u00AD" (hífen opcional)
+// só aparece se a palavra precisar quebrar. O texto em TERMOS não muda.
+const QUEBRA_DE_PALAVRA = {
+  "Registradores": "Re\u00ADgis\u00ADtra\u00ADdo\u00ADres",
+  "Microcontrolador": "Mi\u00ADcro\u00ADcon\u00ADtro\u00ADla\u00ADdor"
+};
+
+function textoDoCard(termo) {
+  if (QUEBRA_DE_PALAVRA[termo]) {
+    return QUEBRA_DE_PALAVRA[termo];
+  } else {
+    return termo;
+  }
+}
+
+// Cria um card de termo para cada item da lista, na ordem recebida.
+// Cada card guarda a posição do termo no vetor TERMOS (data-indice).
+function montarTabuleiro(listaIndices) {
+  tabuleiro.innerHTML = "";
+  for (let i = 0; i < listaIndices.length; i++) {
+    const indice = listaIndices[i];
+    const card = document.createElement("button");
+    card.type = "button";
+    card.className = "card-termo";
+    card.dataset.indice = indice;
+    card.textContent = textoDoCard(TERMOS[indice].termo);
+    card.setAttribute("aria-label", TERMOS[indice].termo);
+    tabuleiro.appendChild(card);
+  }
 }

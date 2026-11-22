@@ -330,3 +330,36 @@ input,
 .pista {
   background-color: var(--sunlight-yellow);
 }
+
+/* ===== Tabuleiro 4x4 ===== */
+.tabuleiro {
+  display: grid;
+  grid-template-columns: repeat(4, 100px);
+  grid-auto-rows: 100px;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.card-termo {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  overflow-wrap: anywhere;
+  color: var(--deep-forest);
+  background-color: var(--earth-beige);
+  border: 4px solid var(--deep-forest);
+  border-radius: 0;
+  box-shadow: 4px 4px 0 var(--deep-forest);
+  cursor: pointer;
+}
+
+.card-termo:hover {
+  background-color: var(--golden-wheat);
+}
