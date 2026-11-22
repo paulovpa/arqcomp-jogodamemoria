@@ -564,6 +564,51 @@ input,
   visibility: hidden;
 }
 
+/* ===== Tela de placar final ===== */
+.caixa-placar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  max-width: 520px;
+  padding: 28px 24px;
+  text-align: center;
+  background-color: var(--cloud-white);
+  border: 3px solid var(--deep-forest);
+  box-shadow: 4px 4px 0 var(--deep-forest);
+}
+
+.mensagem-desempenho {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--deep-forest);
+}
+
+.placar-jogador {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.placar-jogador p {
+  margin: 0;
+}
+
+.nome-final {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--forest-green);
+}
+
+.pontos-final {
+  font-family: var(--fonte-titulo);
+  font-size: 32px;
+  color: var(--deep-forest);
+}
+
 /* ===== Pop-ups (fim de jogo e conferir) ===== */
 .popup-fundo {
   position: fixed;

@@ -550,5 +550,32 @@ function fecharPopup(popup) {
 // "Ver placar": fecha o pop-up e vai para a tela de placar final.
 botaoVerPlacar.addEventListener("click", function () {
   fecharPopup(popupFim);
+  preencherPlacar();
   mostrarTela("tela-placar");
 });
+
+// ===== Tela de placar final =====
+const mensagemDesempenho = document.getElementById("mensagem-desempenho");
+const nomeFinal = document.getElementById("nome-final");
+const pontosFinal = document.getElementById("pontos-final");
+
+// Mensagem de acordo com a quantidade de acertos (textos da especificação).
+function mensagemPorAcertos(totalAcertos) {
+  if (totalAcertos < 5) {
+    return "Vish, se perdeu...";
+  } else if (totalAcertos < 10) {
+    return "Eu confio";
+  } else if (totalAcertos < 12) {
+    return "Tá no caminho!";
+  } else if (totalAcertos < 16) {
+    return "Tá voando alto";
+  } else {
+    return "Você é monstro!";
+  }
+}
+
+function preencherPlacar() {
+  mensagemDesempenho.textContent = mensagemPorAcertos(acertos);
+  nomeFinal.textContent = nomeJogador;
+  pontosFinal.textContent = pontos;
+}
