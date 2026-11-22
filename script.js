@@ -7,6 +7,9 @@ const SEGUNDOS_ALERTA = 5;     // a partir daqui o timer fica vermelho
 const CHANCES = 3;            // chances por questão
 const TOTAL_QUESTOES = 16;
 const PAUSA_ENTRE_QUESTOES = 1200; // em milissegundos, para o jogador ver o resultado
+const DURACAO_AVISO = 1500;        // em milissegundos, aviso de tempo ou chances esgotados
+const AVISO_TEMPO = "Tempo esgotado!";
+const AVISO_CHANCES = "Suas chances acabaram!";
 
 // ===== Dados dos 16 termos (textos da especificação) =====
 // Cada termo: termo, analogia, porquê, pista técnica e imagem da analogia.
@@ -220,6 +223,7 @@ const imagemQuestao = document.getElementById("imagem-questao");
 const reservaQuestao = document.getElementById("reserva-questao");
 const descricaoQuestao = document.getElementById("descricao-questao");
 const pistaQuestao = document.getElementById("pista-questao");
+const avisoQuestao = document.getElementById("aviso-questao");
 
 // Se a imagem não existir, mostra a analogia escrita no lugar.
 imagemQuestao.addEventListener("error", function () {
@@ -361,7 +365,8 @@ function responderErrado(card) {
     aceitandoCliques = false;
     pararTimer();
     resultados.push({ indice: ordemQuestoes[questaoAtual], acertou: false });
-    setTimeout(avancarQuestao, PAUSA_ENTRE_QUESTOES);
+    mostrarAviso(AVISO_CHANCES);
+    setTimeout(avancarQuestao, DURACAO_AVISO);
   }
 }
 
@@ -378,6 +383,7 @@ function limparCardsErrados() {
 
 // Vai para a próxima questão ou para o fim das 16 questões.
 function avancarQuestao() {
+  esconderAviso();
   limparCardsErrados();
   questaoAtual = questaoAtual + 1;
 
@@ -425,5 +431,17 @@ function contarSegundo() {
 function esgotarTempo() {
   aceitandoCliques = false;
   resultados.push({ indice: ordemQuestoes[questaoAtual], acertou: false });
-  setTimeout(avancarQuestao, PAUSA_ENTRE_QUESTOES);
+  mostrarAviso(AVISO_TEMPO);
+  setTimeout(avancarQuestao, DURACAO_AVISO);
+}
+
+// ===== Aviso sobre o card questionado =====
+function mostrarAviso(texto) {
+  avisoQuestao.textContent = texto;
+  avisoQuestao.hidden = false;
+}
+
+function esconderAviso() {
+  avisoQuestao.hidden = true;
+  avisoQuestao.textContent = "";
 }

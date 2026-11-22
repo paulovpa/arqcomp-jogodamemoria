@@ -72,9 +72,13 @@
         </div>
 
         <!-- Card da imagem questionada (200x200) com descrição e pista -->
-        <div id="moldura-questao" class="card-questao">
-          <img id="imagem-questao" class="imagem-questao" src="" alt="">
-          <span id="reserva-questao" class="reserva-questao"></span>
+        <div class="area-imagem">
+          <div id="moldura-questao" class="card-questao">
+            <img id="imagem-questao" class="imagem-questao" src="" alt="">
+            <span id="reserva-questao" class="reserva-questao"></span>
+          </div>
+          <!-- Aviso de tempo ou chances esgotados, por cima do card -->
+          <p id="aviso-questao" class="aviso-questao mensagem" role="status" hidden></p>
         </div>
         <p id="descricao-questao" class="descricao"></p>
         <p id="pista-questao" class="pista"></p>

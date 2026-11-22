@@ -56,6 +56,27 @@ input,
   font-family: var(--fonte-interface);
 }
 
+/* Aviso de tempo/chances esgotados: faixa sobre a parte de baixo do card */
+.aviso-questao {
+  position: absolute;
+  left: 50%;
+  bottom: 16px;
+  transform: translateX(-50%);
+  margin: 0;
+  padding: 8px 14px;
+  white-space: nowrap;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--cloud-white);
+  background-color: var(--vermelho-erro);
+  border: 3px solid var(--deep-forest);
+  box-shadow: 3px 3px 0 var(--deep-forest);
+}
+
+.aviso-questao[hidden] {
+  display: none;
+}
+
 .descricao,
 .pista {
   font-family: var(--fonte-texto);
@@ -288,6 +309,10 @@ input,
 }
 
 /* ===== Card da imagem questionada (200x200) ===== */
+.area-imagem {
+  position: relative;
+}
+
 .card-questao {
   position: relative;
   flex-shrink: 0;
