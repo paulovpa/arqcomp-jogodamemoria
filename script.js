@@ -21,9 +21,9 @@ const CHAVE_ULTIMO_FUNDO = "viagemComputacional_ultimoFundo";
 
 // Backgrounds 16-bit: um é sorteado a cada partida, sem repetir o anterior.
 const FUNDOS = [
-  "assets/backgrounds/wallpaper-italia.png",
-  "assets/backgrounds/wallpaper-japao.png",
-  "assets/backgrounds/wallpaper-suica.png"
+  "assets/backgrounds/wallpaper-italia.webp",
+  "assets/backgrounds/wallpaper-japao.webp",
+  "assets/backgrounds/wallpaper-suica.webp"
 ];
 
 // ===== Dados dos 16 termos (textos da especificação) =====
