@@ -25,15 +25,24 @@ body {
 }
 
 /* ===== Background da partida =====
-   Camada fixa atrás de todo o conteúdo; a imagem é sorteada no script.js
-   e passada pela variável --fundo-partida. */
+   Camada fixa atrás de todo o conteúdo, com três fundos empilhados:
+   1. camada branca de opacidade baixa, para suavizar a imagem e destacar o jogo;
+   2. a imagem sorteada no script.js (variável --fundo-partida);
+   3. degradê da paleta, que aparece se a imagem não carregar. */
+:root {
+  --camada-suave: rgba(255, 255, 255, 0.35);
+}
+
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   z-index: -1;
-  background-image: var(--fundo-partida, none);
-  background-size: cover;
+  background-image:
+    linear-gradient(var(--camada-suave), var(--camada-suave)),
+    var(--fundo-partida, none),
+    linear-gradient(180deg, var(--morning-sky) 0%, var(--cloud-white) 65%, var(--meadow-green) 100%);
+  background-size: auto, cover, auto;
   background-position: center;
   background-repeat: no-repeat;
   image-rendering: pixelated;
