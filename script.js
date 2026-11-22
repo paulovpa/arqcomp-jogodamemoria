@@ -13,6 +13,11 @@ const DURACAO_AVISO = 1500;        // em milissegundos, aviso de tempo ou chance
 const AVISO_TEMPO = "Tempo esgotado!";
 const AVISO_CHANCES = "Suas chances acabaram!";
 
+// Chaves do localStorage (prefixo viagemComputacional_)
+const CHAVE_RANKING = "viagemComputacional_ranking";
+const CHAVE_RECORDE = "viagemComputacional_recorde";
+const LIMITE_RANKING = 10; // quantidade de partidas guardadas no ranking
+
 // ===== Dados dos 16 termos (textos da especificação) =====
 // Cada termo: termo, analogia, porquê, pista técnica e imagem da analogia.
 const TERMOS = [
@@ -139,6 +144,7 @@ let acertos = 0;
 let chancesRestantes = CHANCES;
 let resultados = [];    // um item por questão: { indice, acertou } (usado no "Conferir")
 let aceitandoCliques = false; // false durante a pausa entre questões e no fim do jogo
+let bateuRecorde = false;     // true se a partida que acabou de terminar é o novo recorde
 let tempoRestante = TEMPO_POR_QUESTAO;
 let intervaloTimer = null;    // id do setInterval do timer da questão
 
@@ -444,6 +450,7 @@ function encerrarPartida() {
   aceitandoCliques = false;
   pararTimer();
   bloquearTabuleiro();
+  registrarPartida();
   abrirPopup(popupFim);
   botaoVerPlacar.focus();
 }
@@ -582,6 +589,8 @@ function preencherPlacar() {
   nomeFinal.textContent = nomeJogador;
   pontosFinal.textContent = pontos;
   atualizarBarraAcertos(acertos);
+  exibirRecorde();
+  exibirRanking();
 }
 
 // Cor da barra por faixa de acertos:
@@ -608,4 +617,100 @@ function atualizarBarraAcertos(totalAcertos) {
   barraPreenchida.className = "barra-preenchida " + classeDaBarra(totalAcertos);
   barraTrilho.setAttribute("aria-valuenow", totalAcertos);
   textoAcertos.textContent = totalAcertos + "/" + TOTAL_QUESTOES + " acertadas";
+}
+
+// ===== Recorde e ranking (localStorage) =====
+const recordeValor = document.getElementById("recorde-valor");
+const seloNovoRecorde = document.getElementById("selo-novo-recorde");
+const listaRanking = document.getElementById("lista-ranking");
+
+// Lê um valor salvo em JSON; se não existir ou estiver corrompido, usa o padrão.
+function lerDoArmazenamento(chave, valorPadrao) {
+  try {
+    const texto = localStorage.getItem(chave);
+    if (texto === null) {
+      return valorPadrao;
+    } else {
+      return JSON.parse(texto);
+    }
+  } catch (erro) {
+    return valorPadrao;
+  }
+}
+
+function salvarNoArmazenamento(chave, valor) {
+  try {
+    localStorage.setItem(chave, JSON.stringify(valor));
+  } catch (erro) {
+    // Sem localStorage (ex.: modo privado restrito): o jogo continua sem salvar.
+  }
+}
+
+function lerRanking() {
+  const ranking = lerDoArmazenamento(CHAVE_RANKING, []);
+  if (Array.isArray(ranking)) {
+    return ranking;
+  } else {
+    return [];
+  }
+}
+
+// Salva a partida no início do ranking (mais recente primeiro), mantendo
+// só as últimas LIMITE_RANKING, e atualiza o recorde se foi superado.
+function registrarPartida() {
+  const ranking = lerRanking();
+  ranking.unshift({ nome: nomeJogador, pontos: pontos, acertos: acertos });
+  while (ranking.length > LIMITE_RANKING) {
+    ranking.pop();
+  }
+  salvarNoArmazenamento(CHAVE_RANKING, ranking);
+
+  const recorde = lerDoArmazenamento(CHAVE_RECORDE, null);
+  if (recorde === null || typeof recorde.pontos !== "number" || pontos > recorde.pontos) {
+    salvarNoArmazenamento(CHAVE_RECORDE, { nome: nomeJogador, pontos: pontos });
+    bateuRecorde = pontos > 0;
+  } else {
+    bateuRecorde = false;
+  }
+}
+
+function exibirRecorde() {
+  const recorde = lerDoArmazenamento(CHAVE_RECORDE, null);
+  if (recorde === null || typeof recorde.pontos !== "number") {
+    recordeValor.textContent = "Sem recorde ainda";
+  } else {
+    recordeValor.textContent = recorde.pontos + " pts — " + recorde.nome;
+  }
+  seloNovoRecorde.hidden = !bateuRecorde;
+}
+
+// Monta a lista do ranking; a primeira linha é a partida que acabou de terminar.
+function exibirRanking() {
+  const ranking = lerRanking();
+  listaRanking.innerHTML = "";
+
+  for (let i = 0; i < ranking.length; i++) {
+    const item = document.createElement("li");
+    item.className = "item-ranking";
+    if (i === 0) {
+      item.classList.add("partida-atual");
+    }
+
+    const nome = document.createElement("span");
+    nome.className = "ranking-nome";
+    nome.textContent = ranking[i].nome;
+
+    const pontuacao = document.createElement("span");
+    pontuacao.className = "ranking-pontos";
+    pontuacao.textContent = ranking[i].pontos + " pts";
+
+    const acertosItem = document.createElement("span");
+    acertosItem.className = "ranking-acertos";
+    acertosItem.textContent = ranking[i].acertos + "/" + TOTAL_QUESTOES;
+
+    item.appendChild(nome);
+    item.appendChild(pontuacao);
+    item.appendChild(acertosItem);
+    listaRanking.appendChild(item);
+  }
 }

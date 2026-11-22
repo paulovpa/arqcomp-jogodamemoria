@@ -122,6 +122,23 @@
         </div>
         <p id="texto-acertos" class="texto-acertos">0/16 acertadas</p>
       </div>
+
+      <!-- Recorde (salvo no localStorage), entre o placar e o ranking -->
+      <div class="recorde">
+        <i class="fa-solid fa-trophy recorde-icone" aria-hidden="true"></i>
+        <div class="recorde-texto">
+          <span class="rotulo-info">Recorde</span>
+          <span id="recorde-valor" class="recorde-valor"></span>
+        </div>
+        <span id="selo-novo-recorde" class="selo-novo-recorde" hidden>Novo recorde!</span>
+      </div>
+
+      <!-- Ranking com as últimas partidas (salvo no localStorage) -->
+      <div class="ranking">
+        <h3 class="titulo-ranking"><i class="fa-solid fa-ranking-star" aria-hidden="true"></i> Ranking</h3>
+        <p class="subtitulo-ranking">Últimas partidas</p>
+        <ol id="lista-ranking" class="lista-ranking"></ol>
+      </div>
     </div>
   </section>
 

@@ -644,6 +644,115 @@ input,
   font-weight: 700;
 }
 
+/* Recorde */
+.recorde {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  width: 100%;
+  max-width: 360px;
+  padding: 10px 14px;
+  background-color: rgba(245, 215, 126, 0.45); /* sunlight-yellow suave */
+  border-left: 4px solid var(--golden-wheat);
+}
+
+.recorde-icone {
+  font-size: 26px;
+  color: var(--golden-wheat);
+}
+
+.recorde-texto {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+
+.recorde-valor {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.selo-novo-recorde {
+  padding: 4px 8px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--cloud-white);
+  background-color: var(--sunset-orange);
+  border: 2px solid var(--deep-forest);
+}
+
+.selo-novo-recorde[hidden] {
+  display: none;
+}
+
+/* Ranking das últimas partidas */
+.ranking {
+  width: 100%;
+  max-width: 360px;
+}
+
+.titulo-ranking {
+  margin: 0;
+  font-size: 13px;
+}
+
+.subtitulo-ranking {
+  margin: 6px 0 10px;
+  font-size: 13px;
+  color: var(--forest-green);
+}
+
+.lista-ranking {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: posicao;
+  font-family: var(--fonte-texto);
+  font-size: 14px;
+}
+
+.item-ranking {
+  display: grid;
+  grid-template-columns: 28px 1fr auto 52px;
+  gap: 8px;
+  align-items: center;
+  padding: 5px 8px;
+  text-align: left;
+  counter-increment: posicao;
+}
+
+.item-ranking::before {
+  content: counter(posicao) ".";
+  color: var(--mountain-blue);
+}
+
+.item-ranking:nth-child(even) {
+  background-color: rgba(214, 194, 160, 0.3); /* earth-beige suave */
+}
+
+.item-ranking.partida-atual {
+  font-weight: 600;
+  background-color: rgba(145, 185, 120, 0.35); /* meadow-green suave */
+}
+
+.ranking-nome {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ranking-pontos {
+  font-weight: 600;
+}
+
+.ranking-acertos {
+  text-align: right;
+  color: var(--forest-green);
+}
+
 /* ===== Pop-ups (fim de jogo e conferir) ===== */
 .popup-fundo {
   position: fixed;
