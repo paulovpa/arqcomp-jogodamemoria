@@ -122,3 +122,48 @@ const TERMOS = [
     imagem: "assets/cards/quad-core.png"
   }
 ];
+
+// ===== Estado da partida =====
+let nomeJogador = "";
+
+// ===== Elementos da tela inicial =====
+const botaoPlay = document.getElementById("botao-play");
+const formNome = document.getElementById("form-nome");
+const campoNome = document.getElementById("campo-nome");
+const erroNome = document.getElementById("erro-nome");
+
+// ===== Troca de telas =====
+// Mostra só a tela com o id informado e esconde as outras.
+function mostrarTela(idTela) {
+  const telas = document.querySelectorAll(".tela");
+  for (let i = 0; i < telas.length; i++) {
+    if (telas[i].id === idTela) {
+      telas[i].hidden = false;
+    } else {
+      telas[i].hidden = true;
+    }
+  }
+}
+
+// ===== Tela inicial =====
+// Play: esconde o botão e mostra o campo do nome.
+botaoPlay.addEventListener("click", function () {
+  botaoPlay.hidden = true;
+  formNome.hidden = false;
+  campoNome.focus();
+});
+
+// Jogar: valida o nome e inicia a partida.
+formNome.addEventListener("submit", function (evento) {
+  evento.preventDefault();
+  const nome = campoNome.value.trim();
+
+  if (nome === "") {
+    erroNome.textContent = "Digite seu nome para embarcar!";
+    campoNome.focus();
+  } else {
+    erroNome.textContent = "";
+    nomeJogador = nome;
+    mostrarTela("tela-jogo");
+  }
+});

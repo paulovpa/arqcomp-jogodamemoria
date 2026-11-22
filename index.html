@@ -32,6 +32,15 @@
       <button id="botao-play" class="botao botao-play" type="button" aria-label="Play">
         <i class="fa-solid fa-play"></i>
       </button>
+
+      <!-- Aparece depois de clicar no play -->
+      <form id="form-nome" class="form-nome" hidden novalidate>
+        <label for="campo-nome" class="mensagem">Qual é o seu nome, viajante?</label>
+        <input id="campo-nome" class="campo-nome" type="text" maxlength="20"
+               placeholder="Digite seu nome" autocomplete="off">
+        <p id="erro-nome" class="erro-nome mensagem" aria-live="polite"></p>
+        <button id="botao-jogar" class="botao" type="submit">Jogar</button>
+      </form>
     </div>
   </section>
 
