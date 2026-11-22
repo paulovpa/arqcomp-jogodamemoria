@@ -33,6 +33,11 @@ body {
   --camada-suave: rgba(255, 255, 255, 0.5);
 }
 
+/* Na tela inicial o wallpaper aparece sem a camada branca */
+body[data-tela="tela-inicio"] {
+  --camada-suave: rgba(255, 255, 255, 0);
+}
+
 body::before {
   content: "";
   position: fixed;

@@ -164,7 +164,9 @@ const erroNome = document.getElementById("erro-nome");
 
 // ===== Troca de telas =====
 // Mostra só a tela com o id informado e esconde as outras.
+// O body guarda a tela atual em data-tela (o CSS usa para ajustar o fundo).
 function mostrarTela(idTela) {
+  document.body.dataset.tela = idTela;
   const telas = document.querySelectorAll(".tela");
   for (let i = 0; i < telas.length; i++) {
     if (telas[i].id === idTela) {
