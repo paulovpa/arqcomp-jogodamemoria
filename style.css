@@ -444,11 +444,12 @@ input,
   overflow: hidden;
 }
 
+/* A imagem preenche os 200x200 e o excesso é cortado (centralizado) */
 .imagem-questao {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  image-rendering: pixelated;
+  object-position: center;
 }
 
 /* Reserva exibida enquanto a imagem do card não existir */
@@ -555,7 +556,7 @@ input,
   width: 100%;
   height: 100%;
   object-fit: cover;
-  image-rendering: pixelated;
+  object-position: center;
 }
 
 .card-termo.mostrando-imagem.sem-imagem .imagem-termo {
