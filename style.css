@@ -24,6 +24,21 @@ body {
   color: var(--deep-forest);
 }
 
+/* ===== Background da partida =====
+   Camada fixa atrás de todo o conteúdo; a imagem é sorteada no script.js
+   e passada pela variável --fundo-partida. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image: var(--fundo-partida, none);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  image-rendering: pixelated;
+}
+
 /* ===== Tipografia 16-bit (máximo de 3 fontes) =====
    - Títulos, pontuação e timer: Press Start 2P
    - Botões, termos e mensagens: Pixelify Sans

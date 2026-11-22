@@ -17,6 +17,14 @@ const AVISO_CHANCES = "Suas chances acabaram!";
 const CHAVE_RANKING = "viagemComputacional_ranking";
 const CHAVE_RECORDE = "viagemComputacional_recorde";
 const LIMITE_RANKING = 10; // quantidade de partidas guardadas no ranking
+const CHAVE_ULTIMO_FUNDO = "viagemComputacional_ultimoFundo";
+
+// Backgrounds 16-bit: um é sorteado a cada partida, sem repetir o anterior.
+const FUNDOS = [
+  "assets/backgrounds/wallpaper-italia.png",
+  "assets/backgrounds/wallpaper-japao.png",
+  "assets/backgrounds/wallpaper-suica.png"
+];
 
 // ===== Dados dos 16 termos (textos da especificação) =====
 // Cada termo: termo, analogia, porquê, pista técnica e imagem da analogia.
@@ -799,6 +807,33 @@ const botaoReiniciar = document.getElementById("botao-reiniciar");
 
 botaoReiniciar.addEventListener("click", function () {
   fecharPopup(popupConferir);
+  trocarFundo();
   mostrarTela("tela-jogo");
   iniciarPartida();
 });
+
+// ===== Background da partida =====
+// Sorteia um fundo diferente do último usado (guardado no localStorage,
+// para não repetir nem depois de recarregar a página).
+function sortearFundo() {
+  const ultimoFundo = lerDoArmazenamento(CHAVE_ULTIMO_FUNDO, "");
+  const opcoes = [];
+  for (let i = 0; i < FUNDOS.length; i++) {
+    if (FUNDOS[i] !== ultimoFundo) {
+      opcoes.push(FUNDOS[i]);
+    }
+  }
+  const escolhido = opcoes[Math.floor(Math.random() * opcoes.length)];
+  salvarNoArmazenamento(CHAVE_ULTIMO_FUNDO, escolhido);
+  return escolhido;
+}
+
+// O CSS usa a variável --fundo-partida como imagem de fundo da página.
+function trocarFundo() {
+  const fundo = sortearFundo();
+  document.documentElement.style.setProperty("--fundo-partida", 'url("' + fundo + '")');
+}
+
+// ===== Inicialização =====
+// O fundo sorteado ao abrir a página vale para a tela inicial e a primeira partida.
+trocarFundo();
