@@ -56,6 +56,62 @@ input,
   font-family: var(--fonte-interface);
 }
 
+/* Saída do card questionado: zoom out no acerto */
+.card-questao.saindo-zoom {
+  animation: zoom-saida 800ms ease-in forwards;
+}
+
+/* Emojis por cima do card questionado (imagens trocáveis em assets/emojis/) */
+.emoji {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 2;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translate(-50%, -50%);
+  animation: emoji-surgir 400ms ease-out;
+  pointer-events: none;
+}
+
+.emoji[hidden] {
+  display: none;
+}
+
+.emoji img {
+  max-width: 100%;
+  max-height: 100%;
+  image-rendering: pixelated;
+}
+
+/* Reserva (ícone Font Awesome) enquanto a imagem do emoji não existir */
+.emoji-reserva {
+  display: none;
+  font-size: 96px;
+  filter: drop-shadow(3px 3px 0 var(--deep-forest));
+}
+
+.emoji.sem-imagem img {
+  display: none;
+}
+
+.emoji.sem-imagem .emoji-reserva {
+  display: block;
+}
+
+.emoji-acerto .emoji-reserva {
+  color: var(--sunset-orange);
+}
+
+@keyframes emoji-surgir {
+  0%   { transform: translate(-50%, -50%) scale(0); }
+  70%  { transform: translate(-50%, -50%) scale(1.15); }
+  100% { transform: translate(-50%, -50%) scale(1); }
+}
+
 /* Aviso de tempo/chances esgotados: faixa sobre a parte de baixo do card */
 .aviso-questao {
   position: absolute;

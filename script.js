@@ -226,6 +226,7 @@ const reservaQuestao = document.getElementById("reserva-questao");
 const descricaoQuestao = document.getElementById("descricao-questao");
 const pistaQuestao = document.getElementById("pista-questao");
 const avisoQuestao = document.getElementById("aviso-questao");
+const emojiAcerto = document.getElementById("emoji-acerto");
 
 // Se a imagem não existir, mostra a analogia escrita no lugar.
 imagemQuestao.addEventListener("error", function () {
@@ -367,6 +368,7 @@ function responderCerto(card) {
   resultados.push({ indice: ordemQuestoes[questaoAtual], acertou: true });
 
   card.classList.add("certo", "virando");
+  mostrarEfeitoQuestao(emojiAcerto, "saindo-zoom");
 
   // No meio da virada (card "fechado") troca o termo pela imagem.
   setTimeout(function () {
@@ -417,6 +419,7 @@ function limparCardsErrados() {
 // Vai para a próxima questão ou para o fim das 16 questões.
 function avancarQuestao() {
   esconderAviso();
+  limparEfeitosQuestao();
   limparCardsErrados();
   questaoAtual = questaoAtual + 1;
 
@@ -477,4 +480,20 @@ function mostrarAviso(texto) {
 function esconderAviso() {
   avisoQuestao.hidden = true;
   avisoQuestao.textContent = "";
+}
+
+// ===== Efeitos sobre o card questionado =====
+// Mostra o emoji por cima do card e aplica a animação de saída no card.
+function mostrarEfeitoQuestao(emoji, classeSaida) {
+  emoji.hidden = false;
+  molduraQuestao.classList.add(classeSaida);
+}
+
+// Esconde os emojis e traz o card de volta para a próxima questão.
+function limparEfeitosQuestao() {
+  const emojis = document.querySelectorAll(".emoji");
+  for (let i = 0; i < emojis.length; i++) {
+    emojis[i].hidden = true;
+  }
+  molduraQuestao.classList.remove("saindo-zoom", "saindo-fade");
 }

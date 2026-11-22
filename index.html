@@ -77,6 +77,12 @@
             <img id="imagem-questao" class="imagem-questao" src="" alt="">
             <span id="reserva-questao" class="reserva-questao"></span>
           </div>
+          <!-- Emoji de acerto: troque o arquivo em assets/emojis/fogo.png quando quiser -->
+          <div id="emoji-acerto" class="emoji emoji-acerto" hidden>
+            <img src="assets/emojis/fogo.png" alt="Emoji de fogo"
+                 onerror="this.parentElement.classList.add('sem-imagem')">
+            <i class="fa-solid fa-fire emoji-reserva" aria-hidden="true"></i>
+          </div>
           <!-- Aviso de tempo ou chances esgotados, por cima do card -->
           <p id="aviso-questao" class="aviso-questao mensagem" role="status" hidden></p>
         </div>
