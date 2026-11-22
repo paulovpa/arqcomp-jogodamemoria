@@ -418,6 +418,58 @@ input,
   cursor: not-allowed;
 }
 
+/* Verso do card: imagem da analogia (aparece só ao acertar) */
+.imagem-termo,
+.reserva-termo {
+  display: none;
+}
+
+.card-termo.mostrando-imagem {
+  padding: 3px;
+}
+
+.card-termo.mostrando-imagem .texto-termo {
+  display: none;
+}
+
+.card-termo.mostrando-imagem .imagem-termo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  image-rendering: pixelated;
+}
+
+.card-termo.mostrando-imagem.sem-imagem .imagem-termo {
+  display: none;
+}
+
+.card-termo.mostrando-imagem.sem-imagem .reserva-termo {
+  display: block;
+  font-size: 12px;
+}
+
+/* Virada estilo 16-bit: o card "fecha" na horizontal e abre mostrando o verso */
+@keyframes virar-card {
+  0%   { transform: scaleX(1); }
+  50%  { transform: scaleX(0); }
+  100% { transform: scaleX(1); }
+}
+
+.card-termo.virando {
+  animation: virar-card 400ms ease-in-out;
+}
+
+/* Zoom out: o card encolhe até sumir */
+@keyframes zoom-saida {
+  from { transform: scale(1);  opacity: 1; }
+  to   { transform: scale(0);  opacity: 0; }
+}
+
+.card-termo.saindo {
+  animation: zoom-saida 400ms ease-in forwards;
+}
+
 /* Card acertado: o espaço fica vazio e a grade não se reorganiza */
 .card-termo.removido {
   visibility: hidden;

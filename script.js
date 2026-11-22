@@ -6,7 +6,9 @@ const TEMPO_POR_QUESTAO = 15; // em segundos
 const SEGUNDOS_ALERTA = 5;     // a partir daqui o timer fica vermelho
 const CHANCES = 3;            // chances por questão
 const TOTAL_QUESTOES = 16;
-const PAUSA_ENTRE_QUESTOES = 1200; // em milissegundos, para o jogador ver o resultado
+const PAUSA_ENTRE_QUESTOES = 1400; // em milissegundos, para o jogador ver o resultado
+const DURACAO_VIRAR = 400;         // em milissegundos, igual à animação virar-card do CSS
+const DURACAO_ZOOM_SAIDA = 400;    // em milissegundos, igual à animação zoom-saida do CSS
 const DURACAO_AVISO = 1500;        // em milissegundos, aviso de tempo ou chances esgotados
 const AVISO_TEMPO = "Tempo esgotado!";
 const AVISO_CHANCES = "Suas chances acabaram!";
@@ -311,8 +313,29 @@ function montarTabuleiro(listaIndices) {
     card.type = "button";
     card.className = "card-termo";
     card.dataset.indice = indice;
-    card.textContent = textoDoCard(TERMOS[indice].termo);
     card.setAttribute("aria-label", TERMOS[indice].termo);
+
+    // Frente: nome do termo. Verso (mostrado ao acertar): imagem da analogia.
+    const texto = document.createElement("span");
+    texto.className = "texto-termo";
+    texto.textContent = textoDoCard(TERMOS[indice].termo);
+
+    const imagem = document.createElement("img");
+    imagem.className = "imagem-termo";
+    imagem.src = TERMOS[indice].imagem;
+    imagem.alt = TERMOS[indice].analogia;
+    imagem.addEventListener("error", function () {
+      card.classList.add("sem-imagem");
+    });
+
+    // Reserva exibida no verso enquanto a imagem não existir.
+    const reserva = document.createElement("span");
+    reserva.className = "reserva-termo";
+    reserva.textContent = TERMOS[indice].analogia;
+
+    card.appendChild(texto);
+    card.appendChild(imagem);
+    card.appendChild(reserva);
     tabuleiro.appendChild(card);
   }
 }
@@ -334,19 +357,29 @@ tabuleiro.addEventListener("click", function (evento) {
   }
 });
 
-// Acerto: card verde, soma pontos e passa para a próxima questão.
+// Acerto: o card fica verde, vira mostrando a imagem da analogia e some com zoom out.
 function responderCerto(card) {
   aceitandoCliques = false;
   pararTimer();
-  card.classList.add("certo");
   pontos = pontos + PONTOS_POR_ACERTO;
   acertos = acertos + 1;
   atualizarPontuacao(pontos);
   resultados.push({ indice: ordemQuestoes[questaoAtual], acertou: true });
 
+  card.classList.add("certo", "virando");
+
+  // No meio da virada (card "fechado") troca o termo pela imagem.
+  setTimeout(function () {
+    card.classList.add("mostrando-imagem");
+  }, DURACAO_VIRAR / 2);
+
+  setTimeout(function () {
+    card.classList.remove("virando");
+    card.classList.add("saindo");
+  }, PAUSA_ENTRE_QUESTOES - DURACAO_ZOOM_SAIDA);
+
   setTimeout(function () {
     // O espaço do card acertado fica vazio no tabuleiro.
-    card.classList.remove("certo");
     card.classList.add("removido");
     card.disabled = true;
     avancarQuestao();
