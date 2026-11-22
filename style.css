@@ -920,7 +920,15 @@ input,
 @media (min-width: 960px) {
   .tela-jogo {
     justify-content: center;
-    gap: 28px;
+    gap: 20px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+
+  /* Painel um pouco mais compacto para caber pistas longas em telas de 720px */
+  .painel-questao {
+    gap: 12px;
+    padding: 16px 20px;
   }
 
   .area-jogo {
