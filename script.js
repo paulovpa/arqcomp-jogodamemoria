@@ -125,6 +125,8 @@ const TERMOS = [
 
 // ===== Estado da partida =====
 let nomeJogador = "";
+let ordemQuestoes = []; // índices de TERMOS na ordem sorteada das questões
+let questaoAtual = 0;   // posição em ordemQuestoes (0 a 15)
 
 // ===== Elementos da tela inicial =====
 const botaoPlay = document.getElementById("botao-play");
@@ -222,19 +224,39 @@ function exibirQuestao(item, numeroQuestao) {
   pistaQuestao.textContent = "Pista: " + item.pista;
 }
 
+// ===== Sorteio =====
+// Vetor com os índices de TERMOS: [0, 1, 2, ..., 15].
+function criarListaIndices() {
+  const lista = [];
+  for (let i = 0; i < TERMOS.length; i++) {
+    lista.push(i);
+  }
+  return lista;
+}
+
+// Embaralha o vetor (algoritmo de Fisher–Yates): percorre de trás para frente
+// e troca cada posição com outra sorteada entre 0 e ela mesma.
+function embaralhar(vetor) {
+  for (let i = vetor.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const temporario = vetor[i];
+    vetor[i] = vetor[j];
+    vetor[j] = temporario;
+  }
+  return vetor;
+}
+
 // ===== Início da partida =====
 function iniciarPartida() {
+  // Ordem das questões e posição dos cards são sorteadas de forma independente.
+  ordemQuestoes = embaralhar(criarListaIndices());
+  questaoAtual = 0;
+
   atualizarPontuacao(0);
   atualizarTimer(TEMPO_POR_QUESTAO);
   atualizarChances(CHANCES);
-  exibirQuestao(TERMOS[0], 1);
-
-  // Por enquanto na ordem da especificação; o sorteio vem na próxima etapa.
-  const ordemCards = [];
-  for (let i = 0; i < TERMOS.length; i++) {
-    ordemCards.push(i);
-  }
-  montarTabuleiro(ordemCards);
+  exibirQuestao(TERMOS[ordemQuestoes[questaoAtual]], questaoAtual + 1);
+  montarTabuleiro(embaralhar(criarListaIndices()));
 }
 
 // ===== Tabuleiro 4x4 =====
