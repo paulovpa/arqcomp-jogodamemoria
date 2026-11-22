@@ -3,6 +3,7 @@
 // ===== Constantes do jogo =====
 const PONTOS_POR_ACERTO = 10;
 const TEMPO_POR_QUESTAO = 15; // em segundos
+const SEGUNDOS_ALERTA = 5;     // a partir daqui o timer fica vermelho
 const CHANCES = 3;            // chances por questão
 const TOTAL_QUESTOES = 16;
 const PAUSA_ENTRE_QUESTOES = 1200; // em milissegundos, para o jogador ver o resultado
@@ -189,8 +190,14 @@ function atualizarPontuacao(pontos) {
   elementoPontuacao.textContent = pontos;
 }
 
+// Nos últimos 5 segundos os números do timer ficam vermelhos.
 function atualizarTimer(segundos) {
   elementoTimer.textContent = segundos;
+  if (segundos <= SEGUNDOS_ALERTA) {
+    elementoTimer.classList.add("urgente");
+  } else {
+    elementoTimer.classList.remove("urgente");
+  }
 }
 
 // Desenha um ícone por chance; as já usadas ficam apagadas.
