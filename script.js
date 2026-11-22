@@ -41,14 +41,14 @@ const TERMOS = [
     analogia: "Casa de câmbio",
     porque: "Faz as contas de conversão de moeda.",
     pista: "Essa parte faz todas as operações aritméticas, como soma, subtração, multiplicação e divisão. Ela também faz operações lógicas como AND, OR, NOT e comparações de maior, menor e igual.",
-    imagem: "assets/cards/casa-cambio.png"
+    imagem: "assets/cards/casa-cambio.webp"
   },
   {
     termo: "UC",
     analogia: "Torre de controle",
     porque: "Decide quem decola e quando.",
     pista: "Parte da CPU que coordena os demais componentes, é ela que dá ordens para ULA e outras partes.",
-    imagem: "assets/cards/torre-controle.jpg"
+    imagem: "assets/cards/torre-controle.webp"
   },
   {
     termo: "Registradores",
@@ -62,14 +62,14 @@ const TERMOS = [
     analogia: "Mala de mão",
     porque: "Leva somente o necessário e é desfeita ao chegar no destino final (volátil).",
     pista: "É uma memória mais rápida que um HD e que guarda programas e dados que estão sendo usados naquele momento, mas por ser volátil, se desligar o computador, perderá esses dados.",
-    imagem: "assets/cards/mala-mao.png"
+    imagem: "assets/cards/mala-mao.webp"
   },
   {
     termo: "ROM",
     analogia: "Guia de viagem impresso",
     porque: "Só dá para ler e não dá para alterar.",
     pista: "É uma memória não volátil gravada na fabricação, que contém instruções e configurações básicas para o computador ligar, e as primeiras nunca mais poderiam ser regravadas.",
-    imagem: "assets/cards/guia-viagem.jpg"
+    imagem: "assets/cards/guia-viagem.webp"
   },
   {
     termo: "EEPROM",
@@ -97,21 +97,21 @@ const TERMOS = [
     analogia: "Mala de viagem grande",
     porque: "Cabe muita coisa mas é lenta de pegar.",
     pista: "Guarda grandes volumes de forma permanente, como HDs e SSDs, é mais lenta.",
-    imagem: "assets/cards/mala-grande.jpg"
+    imagem: "assets/cards/mala-grande.webp"
   },
   {
     termo: "DMA",
     analogia: "Esteira de bagagem",
     porque: "Entrega as malas sozinha para as pessoas sem ninguém precisar carregar.",
     pista: "Permite que dispositivos de entrada e saída transfiram e armazenem dados na RAM sem a necessidade de ocupar a CPU.",
-    imagem: "assets/cards/esteira-bagagem.jpg"
+    imagem: "assets/cards/esteira-bagagem.webp"
   },
   {
     termo: "Address bus",
     analogia: "Número do portão de embarque",
     porque: "Diz para onde ir.",
     pista: "Linhas ou trilhas condutoras que ficam na placa-mãe, ligam a CPU à memória e que indicam em qual posição da RAM a CPU vai ler ou escrever.",
-    imagem: "assets/cards/numero-portao.jpg"
+    imagem: "assets/cards/numero-portao.webp"
   },
   {
     termo: "Data bus",
@@ -132,14 +132,14 @@ const TERMOS = [
     analogia: "Recepção do hotel com 2 atendentes",
     porque: "Faz o check-in de dois hóspedes ao mesmo tempo.",
     pista: "É um processador com duas unidades de execução (núcleos) independentes no mesmo chip.",
-    imagem: "assets/cards/dois-recepcao-hotel.jpg"
+    imagem: "assets/cards/dois-recepcao-hotel.webp"
   },
   {
     termo: "Quad core",
     analogia: "Recepção do hotel com 4 atendentes",
     porque: "Faz o check-in de quatro hóspedes ao mesmo tempo e a fila anda bem mais rápido.",
     pista: "É um processador com quatro unidades de execução independentes (núcleos) no mesmo chip.",
-    imagem: "assets/cards/quatro-recepcao-hotel.jpg"
+    imagem: "assets/cards/quatro-recepcao-hotel.webp"
   }
 ];
 
