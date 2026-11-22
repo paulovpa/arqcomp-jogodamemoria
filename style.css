@@ -190,3 +190,58 @@ input,
   color: var(--sunset-orange);
   font-weight: 700;
 }
+
+/* ===== Tela de jogo ===== */
+.tela-jogo {
+  justify-content: flex-start;
+  gap: 16px;
+}
+
+/* ===== Cabeçalho: pontuação, timer e chances ===== */
+.cabecalho-jogo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.painel-topo {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.caixa-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  min-width: 110px;
+  padding: 8px 12px;
+  background-color: var(--cloud-white);
+  border: 4px solid var(--deep-forest);
+  box-shadow: 4px 4px 0 var(--deep-forest);
+}
+
+.rotulo-info {
+  font-size: 14px;
+}
+
+.pontuacao,
+.timer {
+  font-size: 20px;
+}
+
+.chances {
+  display: flex;
+  gap: 8px;
+  font-size: 22px;
+}
+
+.chance {
+  color: var(--sunset-orange);
+}
+
+.chance.perdida {
+  color: var(--earth-beige);
+}

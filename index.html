@@ -45,7 +45,21 @@
   </section>
 
   <!-- Tela de jogo: pontuação, timer, chances, card questionado e tabuleiro 4x4 -->
-  <section id="tela-jogo" class="tela" hidden>
+  <section id="tela-jogo" class="tela tela-jogo" hidden>
+    <!-- Cabeçalho: pontuação e timer lado a lado, chances abaixo -->
+    <header class="cabecalho-jogo">
+      <div class="painel-topo">
+        <div class="caixa-info">
+          <span class="rotulo-info">Pontos</span>
+          <span id="pontuacao" class="pontuacao">0</span>
+        </div>
+        <div class="caixa-info">
+          <span class="rotulo-info"><i class="fa-solid fa-clock"></i> Tempo</span>
+          <span id="timer" class="timer">15</span>
+        </div>
+      </div>
+      <div id="chances" class="chances" aria-label="Chances restantes"></div>
+    </header>
   </section>
 
   <!-- Tela de placar final: mensagem, pontuação, barra de acertos, recorde e ranking -->

@@ -167,3 +167,30 @@ formNome.addEventListener("submit", function (evento) {
     mostrarTela("tela-jogo");
   }
 });
+
+// ===== Elementos da tela de jogo =====
+const elementoPontuacao = document.getElementById("pontuacao");
+const elementoTimer = document.getElementById("timer");
+const elementoChances = document.getElementById("chances");
+
+// ===== Cabeçalho =====
+function atualizarPontuacao(pontos) {
+  elementoPontuacao.textContent = pontos;
+}
+
+function atualizarTimer(segundos) {
+  elementoTimer.textContent = segundos;
+}
+
+// Desenha um ícone por chance; as já usadas ficam apagadas.
+function atualizarChances(chancesRestantes) {
+  elementoChances.innerHTML = "";
+  for (let i = 0; i < CHANCES; i++) {
+    const icone = document.createElement("i");
+    icone.className = "fa-solid fa-heart chance";
+    if (i >= chancesRestantes) {
+      icone.classList.add("perdida");
+    }
+    elementoChances.appendChild(icone);
+  }
+}
