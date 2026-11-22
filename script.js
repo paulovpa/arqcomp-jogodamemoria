@@ -432,9 +432,25 @@ function avancarQuestao() {
     aceitandoCliques = true;
     iniciarTimer();
   } else {
-    // Fim das questões: o encerramento da partida vem numa próxima etapa.
-    aceitandoCliques = false;
-    pararTimer();
+    encerrarPartida();
+  }
+}
+
+// ===== Fim da partida =====
+// A partida acaba depois que as 16 questões foram apresentadas, tendo o jogador
+// acertado ou não. Isso cobre as três condições da seção 5 da especificação:
+// acertar todas, passar por todas e o tempo limite (16 questões x 15 segundos).
+function encerrarPartida() {
+  aceitandoCliques = false;
+  pararTimer();
+  bloquearTabuleiro();
+}
+
+// Bloqueia todos os cards que ainda estão no tabuleiro.
+function bloquearTabuleiro() {
+  const cards = tabuleiro.querySelectorAll(".card-termo");
+  for (let i = 0; i < cards.length; i++) {
+    cards[i].disabled = true;
   }
 }
 
