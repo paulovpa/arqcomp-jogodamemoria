@@ -33,112 +33,112 @@ const TERMOS = [
     termo: "CPU",
     analogia: "Piloto do avião",
     porque: "Comanda toda a viagem.",
-    pista: "É o que executa as instruções dos programas, é considerada o cérebro do computador.",
+    pista: "É a parte do computador que executa as instruções dos programas, ela é considerada o cérebro do computador.",
     imagem: "assets/cards/piloto-aviao.webp"
   },
   {
     termo: "ULA",
     analogia: "Casa de câmbio",
     porque: "Faz as contas de conversão de moeda.",
-    pista: "Parte da CPU que faz somas, subtrações e comparações entre valores.",
+    pista: "Essa parte faz todas as operações aritméticas, como soma, subtração, multiplicação e divisão. Ela também faz operações lógicas como AND, OR, NOT e comparações de maior, menor e igual.",
     imagem: "assets/cards/casa-cambio.png"
   },
   {
     termo: "UC",
     analogia: "Torre de controle",
     porque: "Decide quem decola e quando.",
-    pista: "Parte da CPU que busca, decodifica instruções e coordena os demais componentes.",
+    pista: "Parte da CPU que coordena os demais componentes, é ela que da ordens para ULA e outras partes.",
     imagem: "assets/cards/torre-controle.jpg"
   },
   {
     termo: "Registradores",
     analogia: "Câmera fotográfica na mão",
     porque: "Registra todas as fotos da viagem no exato momento em que você está.",
-    pista: "Menores e mais rápidos espaços de dados, localizados dentro da própria CPU.",
+    pista: "Registram dados e instruções que a CPU está utilizando no momento, ficam localizados dentro da própria CPU.",
     imagem: "assets/cards/camera-fotografica.webp"
   },
   {
     termo: "RAM",
     analogia: "Mala de mão",
     porque: "Leva somente o necessário e é desfeita ao chegar no destino final (volátil).",
-    pista: "Memória principal de trabalho; guarda programas em uso e perde tudo ao desligar.",
+    pista: "É uma memória mais rápida que um HD e que guarda programas e dados que estão sendo usados naquele momento, mas por ser volátil, se desligar o computador, perderá esses dados.",
     imagem: "assets/cards/mala-mao.png"
   },
   {
     termo: "ROM",
     analogia: "Guia de viagem impresso",
     porque: "Só dá para ler e não dá para alterar.",
-    pista: "Gravada na fabricação; seu conteúdo não pode ser alterado depois.",
+    pista: "É uma memória não volátil gravada na fabricação, que contém instruções e configurações básicas para o computador ligar, e as primeiras nunca mais poderiam ser regravadas",
     imagem: "assets/cards/guia-viagem.jpg"
   },
   {
     termo: "EEPROM",
     analogia: "Passaporte com carimbos",
     porque: "Recebe registros um de cada vez e em períodos distantes.",
-    pista: "Regravável byte a byte sem sair do circuito; mantém dados sem energia.",
+    pista: "É um tipo de ROM que é regravável byte a byte sem sair do circuito, ela mantém dados sem energia.",
     imagem: "assets/cards/passaporte.webp"
   },
   {
     termo: "Flash",
     analogia: "Nome escrito na areia da praia",
     porque: "Fica lá até a onda apagar tudo de uma vez.",
-    pista: "Regravável em blocos e não volátil; usada em pendrives e cartões de câmera.",
+    pista: "É uma memória regravável em blocos e não volátil, é muito usada em pendrives e cartões de câmera.",
     imagem: "assets/cards/nome-areia.webp"
   },
   {
     termo: "Cache",
     analogia: "Pochete ou doleira",
     porque: "O que você mais usa e fica junto do corpo.",
-    pista: "Pequena e ultrarrápida, fica entre a CPU e a RAM com dados mais usados.",
+    pista: "É pequena e ultrarrápida, fica entre a CPU e a RAM com dados mais usados, assim a CPU não precisa ficar buscando o dado na RAM toda vez.",
     imagem: "assets/cards/pochete.webp"
   },
   {
     termo: "Memória de massa",
     analogia: "Mala de viagem grande",
     porque: "Cabe muita coisa mas é lenta de pegar.",
-    pista: "Guarda grandes volumes de forma permanente, como HDs e SSDs; é mais lenta.",
+    pista: "Guarda grandes volumes de forma permanente, como HDs e SSDs, é mais lenta.",
     imagem: "assets/cards/mala-grande.jpg"
   },
   {
     termo: "DMA",
     analogia: "Esteira de bagagem",
     porque: "Entrega as malas sozinha para as pessoas sem ninguém precisar carregar.",
-    pista: "Permite que dispositivos transfiram dados para a RAM sem ocupar a CPU.",
+    pista: "Permite que dispositivos de entrada e saída transfiram e armazenem dados na RAM sem a necessidade de ocupar a CPU.",
     imagem: "assets/cards/esteira-bagagem.jpg"
   },
   {
     termo: "Address bus",
     analogia: "Número do portão de embarque",
     porque: "Diz para onde ir.",
-    pista: "Linhas que indicam em qual posição da RAM a CPU vai ler ou escrever.",
+    pista: "Linhas ou trilhas condutoras que ficam na placa-mãe, ligam a CPU a memória e que indicam em qual posição da RAM a CPU vai ler ou escrever.",
     imagem: "assets/cards/numero-portao.jpg"
   },
   {
     termo: "Data bus",
     analogia: "Ônibus de Tour",
     porque: "Leva os passageiros de um lugar para outro.",
-    pista: "Linhas que transportam as informações em si entre CPU, RAM e periféricos.",
+    pista: "Linhas ou trilhas condutoras que transportam as informações em si entre CPU, RAM e periféricos.",
     imagem: "assets/cards/onibus-tour.webp"
   },
   {
     termo: "Microcontrolador",
     analogia: "Fechadura eletrônica do quarto de hotel",
     porque: "Faz uma única tarefa sozinha, que é abrir com o cartão-chave.",
-    pista: "Chip único com CPU, RAM e periféricos, usado em aparelhos com tarefa específica.",
+    pista: "É um pequeno chip único que contém CPU, RAM, periféricos e memória não volátil que guarda o firmware. É muito utilizado em dispositivos que tem uma tarefa específica, como um pen-drive ou arduino.",
     imagem: "assets/cards/fechadura-hotel.webp"
   },
   {
     termo: "Dual core",
     analogia: "Recepção do hotel com 2 atendentes",
     porque: "Faz o check-in de dois hóspedes ao mesmo tempo.",
-    pista: "Processador com duas unidades de execução independentes no mesmo chip.",
+    pista: "É um processador com duas unidades de execução (núcleos) independentes no mesmo chip.",
     imagem: "assets/cards/dois-recepcao-hotel.jpg"
   },
   {
     termo: "Quad core",
     analogia: "Recepção do hotel com 4 atendentes",
     porque: "Faz o check-in de quatro hóspedes ao mesmo tempo e a fila anda bem mais rápido.",
-    pista: "Processador com quatro unidades de execução independentes no mesmo chip.",
+    pista: "É um processador com quatro unidades de execução independentes (núcleos) no mesmo chip.",
     imagem: "assets/cards/quatro-recepcao-hotel.jpg"
   }
 ];
