@@ -133,6 +133,8 @@ let acertos = 0;
 let chancesRestantes = CHANCES;
 let resultados = [];    // um item por questão: { indice, acertou } (usado no "Conferir")
 let aceitandoCliques = false; // false durante a pausa entre questões e no fim do jogo
+let tempoRestante = TEMPO_POR_QUESTAO;
+let intervaloTimer = null;    // id do setInterval do timer da questão
 
 // ===== Elementos da tela inicial =====
 const botaoPlay = document.getElementById("botao-play");
@@ -264,10 +266,10 @@ function iniciarPartida() {
   aceitandoCliques = true;
 
   atualizarPontuacao(0);
-  atualizarTimer(TEMPO_POR_QUESTAO);
   atualizarChances(CHANCES);
   exibirQuestao(TERMOS[ordemQuestoes[questaoAtual]], questaoAtual + 1);
   montarTabuleiro(embaralhar(criarListaIndices()));
+  iniciarTimer();
 }
 
 // ===== Tabuleiro 4x4 =====
@@ -324,6 +326,7 @@ tabuleiro.addEventListener("click", function (evento) {
 // Acerto: card verde, soma pontos e passa para a próxima questão.
 function responderCerto(card) {
   aceitandoCliques = false;
+  pararTimer();
   card.classList.add("certo");
   pontos = pontos + PONTOS_POR_ACERTO;
   acertos = acertos + 1;
@@ -349,6 +352,7 @@ function responderErrado(card) {
 
   if (chancesRestantes === 0) {
     aceitandoCliques = false;
+    pararTimer();
     resultados.push({ indice: ordemQuestoes[questaoAtual], acertou: false });
     setTimeout(avancarQuestao, PAUSA_ENTRE_QUESTOES);
   }
@@ -375,8 +379,44 @@ function avancarQuestao() {
     atualizarChances(chancesRestantes);
     exibirQuestao(TERMOS[ordemQuestoes[questaoAtual]], questaoAtual + 1);
     aceitandoCliques = true;
+    iniciarTimer();
   } else {
     // Fim das questões: o encerramento da partida vem numa próxima etapa.
     aceitandoCliques = false;
+    pararTimer();
   }
+}
+
+// ===== Timer da questão =====
+// Recomeça a contagem de 15 segundos para a questão atual.
+function iniciarTimer() {
+  pararTimer();
+  tempoRestante = TEMPO_POR_QUESTAO;
+  atualizarTimer(tempoRestante);
+  intervaloTimer = setInterval(contarSegundo, 1000);
+}
+
+function pararTimer() {
+  if (intervaloTimer !== null) {
+    clearInterval(intervaloTimer);
+    intervaloTimer = null;
+  }
+}
+
+// Chamado a cada segundo: diminui o tempo e, ao chegar em 0, encerra a questão.
+function contarSegundo() {
+  tempoRestante = tempoRestante - 1;
+  atualizarTimer(tempoRestante);
+
+  if (tempoRestante <= 0) {
+    pararTimer();
+    esgotarTempo();
+  }
+}
+
+// Tempo esgotado sem acerto: a questão conta como errada e o jogo avança.
+function esgotarTempo() {
+  aceitandoCliques = false;
+  resultados.push({ indice: ordemQuestoes[questaoAtual], acertou: false });
+  setTimeout(avancarQuestao, PAUSA_ENTRE_QUESTOES);
 }
