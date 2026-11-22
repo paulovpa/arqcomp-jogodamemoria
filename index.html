@@ -19,6 +19,20 @@
 
   <!-- Tela inicial: logo, botão play, nome do jogador -->
   <section id="tela-inicio" class="tela">
+    <div class="caixa-inicio">
+      <!-- Logo: troque o arquivo em assets/logo/logo.png quando quiser -->
+      <div class="logo-moldura">
+        <img id="logo" class="logo" src="assets/logo/logo.png" alt="Logo do Viagem Computacional"
+             onerror="this.parentElement.classList.add('sem-imagem')">
+        <i class="fa-solid fa-plane-departure logo-reserva" aria-hidden="true"></i>
+      </div>
+
+      <h1 class="titulo">Viagem Computacional</h1>
+
+      <button id="botao-play" class="botao botao-play" type="button" aria-label="Play">
+        <i class="fa-solid fa-play"></i>
+      </button>
+    </div>
   </section>
 
   <!-- Tela de jogo: pontuação, timer, chances, card questionado e tabuleiro 4x4 -->
