@@ -1,1 +1,22 @@
 /* Viagem Computacional — estilos do jogo */
+
+/* ===== Paleta de cores (nomes da especificação) ===== */
+:root {
+  --morning-sky: #A9D5F2;
+  --cloud-white: #F5F4E9;
+  --meadow-green: #91B978;
+  --forest-green: #527B58;
+  --sunlight-yellow: #F5D77E;
+  --golden-wheat: #DDBB72;
+  --flower-pink: #E8B6B1;
+  --mountain-blue: #718FA8;
+  --earth-beige: #D6C2A0;
+  --deep-forest: #344F45;
+  --sunset-orange: #E9A15B;
+}
+
+body {
+  margin: 0;
+  background-color: var(--morning-sky);
+  color: var(--deep-forest);
+}
