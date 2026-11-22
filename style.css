@@ -194,18 +194,11 @@ input,
 /* ===== Tela de jogo ===== */
 .tela-jogo {
   justify-content: flex-start;
-  gap: 16px;
+  gap: 24px;
 }
 
 /* ===== Cabeçalho: pontuação, timer e chances ===== */
 .cabecalho-jogo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-}
-
-.painel-topo {
   display: flex;
   justify-content: center;
   gap: 12px;
@@ -215,27 +208,29 @@ input,
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
   gap: 6px;
-  min-width: 110px;
-  padding: 8px 12px;
+  min-width: 104px;
+  padding: 8px 14px;
   background-color: var(--cloud-white);
-  border: 4px solid var(--deep-forest);
-  box-shadow: 4px 4px 0 var(--deep-forest);
+  border: 3px solid var(--deep-forest);
+  box-shadow: 3px 3px 0 var(--deep-forest);
 }
 
 .rotulo-info {
-  font-size: 14px;
+  font-size: 13px;
+  color: var(--forest-green);
 }
 
 .pontuacao,
 .timer {
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .chances {
   display: flex;
-  gap: 8px;
-  font-size: 22px;
+  gap: 6px;
+  font-size: 18px;
 }
 
 .chance {
@@ -246,41 +241,56 @@ input,
   color: var(--earth-beige);
 }
 
-/* ===== Pergunta ===== */
+/* ===== Área de jogo: questão + tabuleiro ===== */
+.area-jogo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  width: 100%;
+}
+
+/* ===== Painel da questão ===== */
+.painel-questao {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  max-width: 380px;
+  padding: 20px;
+  background-color: var(--cloud-white);
+  border: 3px solid var(--deep-forest);
+  box-shadow: 4px 4px 0 var(--deep-forest);
+}
+
 .area-pergunta {
   text-align: center;
 }
 
 .contador-questao {
-  margin: 0 0 6px;
-  font-size: 14px;
+  margin: 0 0 8px;
+  font-size: 13px;
+  color: var(--forest-green);
 }
 
 .pergunta {
   margin: 0;
-  font-size: 14px;
+  font-size: 13px;
+  line-height: 1.7;
 }
 
-/* ===== Card da imagem questionada ===== */
-.area-questao {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  width: 100%;
-  max-width: 420px;
-}
-
+/* ===== Card da imagem questionada (200x200) ===== */
 .card-questao {
   position: relative;
+  flex-shrink: 0;
   width: 200px;
   height: 200px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--cloud-white);
-  border: 4px solid var(--deep-forest);
-  box-shadow: 6px 6px 0 var(--deep-forest);
+  background-color: var(--morning-sky);
+  border: 3px solid var(--deep-forest);
   overflow: hidden;
 }
 
@@ -316,11 +326,9 @@ input,
 .pista {
   margin: 0;
   width: 100%;
-  padding: 8px 12px;
-  text-align: center;
   font-size: 14px;
-  background-color: var(--cloud-white);
-  border: 3px solid var(--deep-forest);
+  line-height: 1.5;
+  text-align: center;
 }
 
 .descricao {
@@ -328,16 +336,18 @@ input,
 }
 
 .pista {
-  background-color: var(--sunlight-yellow);
+  padding: 10px 14px;
+  text-align: left;
+  background-color: rgba(245, 215, 126, 0.45); /* sunlight-yellow suave */
+  border-left: 4px solid var(--golden-wheat);
 }
 
-/* ===== Tabuleiro 4x4 ===== */
+/* ===== Tabuleiro (4x4 no desktop e tablet) ===== */
 .tabuleiro {
   display: grid;
   grid-template-columns: repeat(4, 100px);
   grid-auto-rows: 100px;
-  gap: 10px;
-  margin-top: 8px;
+  gap: 14px;
 }
 
 .card-termo {
@@ -353,13 +363,61 @@ input,
   text-align: center;
   overflow-wrap: anywhere;
   color: var(--deep-forest);
-  background-color: var(--earth-beige);
-  border: 4px solid var(--deep-forest);
+  background-color: var(--cloud-white);
+  border: 3px solid var(--deep-forest);
   border-radius: 0;
-  box-shadow: 4px 4px 0 var(--deep-forest);
+  box-shadow: 3px 3px 0 var(--deep-forest);
   cursor: pointer;
 }
 
 .card-termo:hover {
-  background-color: var(--golden-wheat);
+  background-color: var(--sunlight-yellow);
+}
+
+/* ===== Desktop: questão ao lado do tabuleiro, sem rolar a tela ===== */
+@media (min-width: 960px) {
+  .tela-jogo {
+    justify-content: center;
+    gap: 28px;
+  }
+
+  .area-jogo {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 56px;
+  }
+}
+
+/* ===== Celular: tabuleiro com 3 colunas, último card centralizado ===== */
+@media (max-width: 599px) {
+  .tela-jogo {
+    padding: 16px 12px 32px;
+    gap: 20px;
+  }
+
+  .cabecalho-jogo {
+    gap: 8px;
+  }
+
+  .caixa-info {
+    min-width: 0;
+    flex: 1;
+    max-width: 110px;
+    padding: 6px 8px;
+  }
+
+  .painel-questao {
+    padding: 16px;
+  }
+
+  .tabuleiro {
+    grid-template-columns: repeat(3, 100px);
+    gap: 12px;
+  }
+
+  /* 16 cards em 3 colunas: o que sobra sozinho na última linha vai para o meio */
+  .card-termo:last-child:nth-child(3n + 1) {
+    grid-column: 2;
+  }
 }
