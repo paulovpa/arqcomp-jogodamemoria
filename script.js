@@ -500,3 +500,19 @@ function limparEfeitosQuestao() {
   }
   molduraQuestao.classList.remove("saindo-zoom", "saindo-fade");
 }
+
+// ===== Feedback tátil =====
+// Vibração curta ao tocar em botões e cards (só em aparelhos que suportam).
+const DURACAO_VIBRACAO = 30; // em milissegundos
+
+// O "true" no final escuta o clique na fase de captura, antes do tabuleiro
+// tratar a resposta (um card errado é bloqueado logo no clique).
+document.addEventListener("click", function (evento) {
+  const alvo = evento.target.closest(".botao, .card-termo");
+  if (alvo && !alvo.disabled && navigator.vibrate) {
+    navigator.vibrate(DURACAO_VIBRACAO);
+  }
+}, true);
+
+// Sem um ouvinte de toque, alguns navegadores de celular não aplicam o :active.
+document.addEventListener("touchstart", function () {}, { passive: true });
