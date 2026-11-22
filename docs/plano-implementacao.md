@@ -16,6 +16,7 @@ O repositório (`paulovpa/arqcomp-jogodamemoria`) tem só a documentação: `REA
 10. **Fontes:** Press Start 2P para títulos, score e timer. Pixelify Sans para botões, termos e mensagens. IBM Plex Mono para descrição e pista.
 11. **Avisos:** "Tempo esgotado!" e "Suas chances acabaram!", mostrados por cerca de 1,5s junto com o emoji chorando.
 12. **Docs:** os arquivos continuam em `docs/`. O background é sorteado entre 3 sem repetir o da partida anterior.
+13. **Layout da tela de jogo (pedido do usuário, diverge da linha 28 da especificação):** no desktop (a partir de 960px), o tabuleiro 4x4 fica ao lado do painel da questão, sem precisar rolar a tela. Entre 600px e 959px, fica abaixo dele e continua 4x4. No celular (até 599px), o tabuleiro tem 3 colunas e o 16º card fica centralizado na última linha.
 
 ## Arquivos
 `index.html`, `style.css` e `script.js` na raiz. Pastas `assets/{logo,cards,emojis,backgrounds}/`. Ao final, atualizo `README.md`. `docs/especificacao.md` não muda.
@@ -79,7 +80,7 @@ O repositório (`paulovpa/arqcomp-jogodamemoria`) tem só a documentação: `REA
     - `style: adiciona fallback de degradê para o background`
 
 14. **Responsividade e acabamento**
-    - `style: ajusta layout responsivo para celular`: a 375px, a grade continua 4x4 e os cards usam `min(100px, 21vw)`.
+    - `style: ajusta layout responsivo das demais telas`: a tela do jogo já é responsiva (decisão 13). Falta revisar a tela inicial, o placar e os pop-ups em 375px.
     - `fix: ...`: correções que aparecerem no teste dos critérios.
 
 15. **README e publicação**
