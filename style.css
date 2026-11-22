@@ -20,3 +20,40 @@ body {
   background-color: var(--morning-sky);
   color: var(--deep-forest);
 }
+
+/* ===== Tipografia 16-bit (máximo de 3 fontes) =====
+   - Títulos, pontuação e timer: Press Start 2P
+   - Botões, termos e mensagens: Pixelify Sans
+   - Descrições e pistas: IBM Plex Mono */
+:root {
+  --fonte-titulo: "Press Start 2P", monospace;
+  --fonte-interface: "Pixelify Sans", sans-serif;
+  --fonte-texto: "IBM Plex Mono", monospace;
+}
+
+body {
+  font-family: var(--fonte-interface);
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+h1, h2, h3,
+.titulo,
+.pontuacao,
+.timer {
+  font-family: var(--fonte-titulo);
+  font-weight: normal;
+  line-height: 1.6;
+}
+
+button,
+input,
+.card-termo,
+.mensagem {
+  font-family: var(--fonte-interface);
+}
+
+.descricao,
+.pista {
+  font-family: var(--fonte-texto);
+}
