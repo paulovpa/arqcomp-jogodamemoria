@@ -5,6 +5,7 @@ const PONTOS_POR_ACERTO = 10;
 const TEMPO_POR_QUESTAO = 15; // em segundos
 const CHANCES = 3;            // chances por questão
 const TOTAL_QUESTOES = 16;
+const PAUSA_ENTRE_QUESTOES = 1200; // em milissegundos, para o jogador ver o resultado
 
 // ===== Dados dos 16 termos (textos da especificação) =====
 // Cada termo: termo, analogia, porquê, pista técnica e imagem da analogia.
@@ -127,6 +128,10 @@ const TERMOS = [
 let nomeJogador = "";
 let ordemQuestoes = []; // índices de TERMOS na ordem sorteada das questões
 let questaoAtual = 0;   // posição em ordemQuestoes (0 a 15)
+let pontos = 0;
+let acertos = 0;
+let resultados = [];    // um item por questão: { indice, acertou } (usado no "Conferir")
+let aceitandoCliques = false; // false durante a pausa entre questões e no fim do jogo
 
 // ===== Elementos da tela inicial =====
 const botaoPlay = document.getElementById("botao-play");
@@ -251,6 +256,10 @@ function iniciarPartida() {
   // Ordem das questões e posição dos cards são sorteadas de forma independente.
   ordemQuestoes = embaralhar(criarListaIndices());
   questaoAtual = 0;
+  pontos = 0;
+  acertos = 0;
+  resultados = [];
+  aceitandoCliques = true;
 
   atualizarPontuacao(0);
   atualizarTimer(TEMPO_POR_QUESTAO);
@@ -290,5 +299,70 @@ function montarTabuleiro(listaIndices) {
     card.textContent = textoDoCard(TERMOS[indice].termo);
     card.setAttribute("aria-label", TERMOS[indice].termo);
     tabuleiro.appendChild(card);
+  }
+}
+
+// ===== Resposta do jogador =====
+tabuleiro.addEventListener("click", function (evento) {
+  const card = evento.target.closest(".card-termo");
+  if (!card || !aceitandoCliques || card.disabled) {
+    return;
+  }
+
+  const indiceEscolhido = Number(card.dataset.indice);
+  const indiceCorreto = ordemQuestoes[questaoAtual];
+
+  if (indiceEscolhido === indiceCorreto) {
+    responderCerto(card);
+  } else {
+    responderErrado(card);
+  }
+});
+
+// Acerto: card verde, soma pontos e passa para a próxima questão.
+function responderCerto(card) {
+  aceitandoCliques = false;
+  card.classList.add("certo");
+  pontos = pontos + PONTOS_POR_ACERTO;
+  acertos = acertos + 1;
+  atualizarPontuacao(pontos);
+  resultados.push({ indice: ordemQuestoes[questaoAtual], acertou: true });
+
+  setTimeout(function () {
+    // O espaço do card acertado fica vazio no tabuleiro.
+    card.classList.remove("certo");
+    card.classList.add("removido");
+    card.disabled = true;
+    avancarQuestao();
+  }, PAUSA_ENTRE_QUESTOES);
+}
+
+// Erro: card vermelho, sem pontos.
+function responderErrado(card) {
+  card.classList.add("errado");
+}
+
+// Limpa os cards errados da questão anterior (os removidos continuam vazios).
+function limparCardsErrados() {
+  const cards = tabuleiro.querySelectorAll(".card-termo");
+  for (let i = 0; i < cards.length; i++) {
+    if (cards[i].classList.contains("errado")) {
+      cards[i].classList.remove("errado");
+      cards[i].disabled = false;
+    }
+  }
+}
+
+// Vai para a próxima questão ou para o fim das 16 questões.
+function avancarQuestao() {
+  limparCardsErrados();
+  questaoAtual = questaoAtual + 1;
+
+  if (questaoAtual < TOTAL_QUESTOES) {
+    exibirQuestao(TERMOS[ordemQuestoes[questaoAtual]], questaoAtual + 1);
+    aceitandoCliques = true;
+  } else {
+    // Fim das questões: o encerramento da partida vem numa próxima etapa.
+    aceitandoCliques = false;
   }
 }

@@ -13,6 +13,9 @@
   --earth-beige: #D6C2A0;
   --deep-forest: #344F45;
   --sunset-orange: #E9A15B;
+
+  /* Cor extra: a especificação pede card vermelho no erro e a paleta não tem vermelho */
+  --vermelho-erro: #D0645A;
 }
 
 body {
@@ -372,6 +375,23 @@ input,
 
 .card-termo:hover {
   background-color: var(--sunlight-yellow);
+}
+
+/* Resultado do clique (depois do hover para ter prioridade) */
+.card-termo.certo {
+  color: var(--cloud-white);
+  background-color: var(--forest-green);
+}
+
+.card-termo.errado {
+  color: var(--cloud-white);
+  background-color: var(--vermelho-erro);
+  cursor: not-allowed;
+}
+
+/* Card acertado: o espaço fica vazio e a grade não se reorganiza */
+.card-termo.removido {
+  visibility: hidden;
 }
 
 /* ===== Desktop: questão ao lado do tabuleiro, sem rolar a tela ===== */
