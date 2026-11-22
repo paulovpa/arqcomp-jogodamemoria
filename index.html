@@ -139,6 +139,13 @@
         <p class="subtitulo-ranking">Últimas partidas</p>
         <ol id="lista-ranking" class="lista-ranking"></ol>
       </div>
+
+      <!-- Ações do placar -->
+      <div class="acoes-placar">
+        <button id="botao-conferir" class="botao" type="button">
+          <i class="fa-solid fa-list-check" aria-hidden="true"></i> Conferir
+        </button>
+      </div>
     </div>
   </section>
 
@@ -148,6 +155,16 @@
       <i class="fa-solid fa-plane-arrival popup-icone" aria-hidden="true"></i>
       <h2 id="titulo-fim" class="popup-titulo">Relaxa, acabou a turbulência!</h2>
       <button id="botao-ver-placar" class="botao" type="button">Ver placar</button>
+    </div>
+  </div>
+
+  <!-- Pop-up Conferir: termos certos e errados da partida -->
+  <div id="popup-conferir" class="popup-fundo" hidden>
+    <div class="popup popup-conferir" role="dialog" aria-modal="true" aria-labelledby="titulo-conferir">
+      <h2 id="titulo-conferir" class="popup-titulo">Conferir respostas</h2>
+      <p id="resumo-conferir" class="resumo-conferir"></p>
+      <ul id="lista-conferir" class="lista-conferir"></ul>
+      <button id="botao-fechar-conferir" class="botao" type="button">Fechar</button>
     </div>
   </div>
 

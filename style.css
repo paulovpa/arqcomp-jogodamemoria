@@ -800,6 +800,84 @@ input,
   to   { transform: scale(1);   opacity: 1; }
 }
 
+/* ===== Ações do placar ===== */
+.acoes-placar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 4px;
+}
+
+/* ===== Pop-up Conferir ===== */
+.popup-conferir {
+  max-width: 640px;
+  max-height: calc(100vh - 32px);
+  gap: 14px;
+  padding: 24px 20px;
+}
+
+.resumo-conferir {
+  margin: 0;
+  font-size: 15px;
+  color: var(--forest-green);
+}
+
+.lista-conferir {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 6px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  list-style: none;
+  text-align: left;
+}
+
+.item-conferir {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 10px;
+  border-left: 4px solid;
+}
+
+.item-conferir.certo {
+  background-color: rgba(145, 185, 120, 0.3); /* meadow-green suave */
+  border-left-color: var(--forest-green);
+}
+
+.item-conferir.errado {
+  background-color: rgba(232, 182, 177, 0.4); /* flower-pink suave */
+  border-left-color: var(--vermelho-erro);
+}
+
+.item-conferir .fa-check {
+  color: var(--forest-green);
+}
+
+.item-conferir .fa-xmark {
+  color: var(--vermelho-erro);
+}
+
+.textos-conferir {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+}
+
+.analogia-conferir {
+  font-family: var(--fonte-texto);
+  font-size: 12px;
+}
+
+@media (min-width: 600px) {
+  .lista-conferir {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
 /* ===== Desktop: questão ao lado do tabuleiro, sem rolar a tela ===== */
 @media (min-width: 960px) {
   .tela-jogo {

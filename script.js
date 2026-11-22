@@ -714,3 +714,76 @@ function exibirRanking() {
     listaRanking.appendChild(item);
   }
 }
+
+// ===== Pop-up Conferir =====
+const botaoConferir = document.getElementById("botao-conferir");
+const popupConferir = document.getElementById("popup-conferir");
+const resumoConferir = document.getElementById("resumo-conferir");
+const listaConferir = document.getElementById("lista-conferir");
+const botaoFecharConferir = document.getElementById("botao-fechar-conferir");
+
+// Monta a lista na ordem em que as questões apareceram na partida.
+function montarListaConferir() {
+  listaConferir.innerHTML = "";
+  resumoConferir.textContent = acertos + " certas e " + (resultados.length - acertos) + " erradas";
+
+  for (let i = 0; i < resultados.length; i++) {
+    const termo = TERMOS[resultados[i].indice];
+    const item = document.createElement("li");
+    const icone = document.createElement("i");
+
+    if (resultados[i].acertou) {
+      item.className = "item-conferir certo";
+      icone.className = "fa-solid fa-check";
+      item.setAttribute("aria-label", termo.termo + ": certa");
+    } else {
+      item.className = "item-conferir errado";
+      icone.className = "fa-solid fa-xmark";
+      item.setAttribute("aria-label", termo.termo + ": errada");
+    }
+    icone.setAttribute("aria-hidden", "true");
+
+    const textos = document.createElement("span");
+    textos.className = "textos-conferir";
+
+    const nomeTermo = document.createElement("strong");
+    nomeTermo.textContent = termo.termo;
+
+    const analogia = document.createElement("span");
+    analogia.className = "analogia-conferir";
+    analogia.textContent = termo.analogia;
+
+    textos.appendChild(nomeTermo);
+    textos.appendChild(analogia);
+    item.appendChild(icone);
+    item.appendChild(textos);
+    listaConferir.appendChild(item);
+  }
+}
+
+function abrirConferir() {
+  montarListaConferir();
+  abrirPopup(popupConferir);
+  botaoFecharConferir.focus();
+}
+
+function fecharConferir() {
+  fecharPopup(popupConferir);
+  botaoConferir.focus();
+}
+
+botaoConferir.addEventListener("click", abrirConferir);
+botaoFecharConferir.addEventListener("click", fecharConferir);
+
+// Fecha também ao clicar fora da caixa ou apertar Esc.
+popupConferir.addEventListener("click", function (evento) {
+  if (evento.target === popupConferir) {
+    fecharConferir();
+  }
+});
+
+document.addEventListener("keydown", function (evento) {
+  if (evento.key === "Escape" && !popupConferir.hidden) {
+    fecharConferir();
+  }
+});
