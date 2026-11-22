@@ -227,6 +227,7 @@ const descricaoQuestao = document.getElementById("descricao-questao");
 const pistaQuestao = document.getElementById("pista-questao");
 const avisoQuestao = document.getElementById("aviso-questao");
 const emojiAcerto = document.getElementById("emoji-acerto");
+const emojiErro = document.getElementById("emoji-erro");
 
 // Se a imagem não existir, mostra a analogia escrita no lugar.
 imagemQuestao.addEventListener("error", function () {
@@ -401,6 +402,7 @@ function responderErrado(card) {
     pararTimer();
     resultados.push({ indice: ordemQuestoes[questaoAtual], acertou: false });
     mostrarAviso(AVISO_CHANCES);
+    mostrarEfeitoQuestao(emojiErro, "saindo-fade");
     setTimeout(avancarQuestao, DURACAO_AVISO);
   }
 }
@@ -468,6 +470,7 @@ function esgotarTempo() {
   aceitandoCliques = false;
   resultados.push({ indice: ordemQuestoes[questaoAtual], acertou: false });
   mostrarAviso(AVISO_TEMPO);
+  mostrarEfeitoQuestao(emojiErro, "saindo-fade");
   setTimeout(avancarQuestao, DURACAO_AVISO);
 }
 

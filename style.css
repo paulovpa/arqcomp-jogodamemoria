@@ -61,6 +61,16 @@ input,
   animation: zoom-saida 800ms ease-in forwards;
 }
 
+/* Saída do card questionado: fade out no erro ou tempo esgotado */
+@keyframes fade-saida {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+.card-questao.saindo-fade {
+  animation: fade-saida 800ms ease-out forwards;
+}
+
 /* Emojis por cima do card questionado (imagens trocáveis em assets/emojis/) */
 .emoji {
   position: absolute;
@@ -104,6 +114,15 @@ input,
 
 .emoji-acerto .emoji-reserva {
   color: var(--sunset-orange);
+}
+
+/* Emoji de erro um pouco acima do centro para não cobrir o aviso */
+.emoji-erro {
+  top: 42%;
+}
+
+.emoji-erro .emoji-reserva {
+  color: var(--sunlight-yellow);
 }
 
 @keyframes emoji-surgir {
