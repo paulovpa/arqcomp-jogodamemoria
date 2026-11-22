@@ -809,6 +809,15 @@ input,
   margin-top: 4px;
 }
 
+.botao-reiniciar {
+  color: var(--cloud-white);
+  background-color: var(--meadow-green);
+}
+
+.botao-reiniciar:hover {
+  background-color: var(--forest-green);
+}
+
 /* ===== Pop-up Conferir ===== */
 .popup-conferir {
   max-width: 640px;

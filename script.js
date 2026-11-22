@@ -284,7 +284,12 @@ function iniciarPartida() {
   acertos = 0;
   chancesRestantes = CHANCES;
   resultados = [];
+  bateuRecorde = false;
   aceitandoCliques = true;
+
+  // Limpa o que tiver sobrado da partida anterior (ao reiniciar).
+  esconderAviso();
+  limparEfeitosQuestao();
 
   atualizarPontuacao(0);
   atualizarChances(CHANCES);
@@ -786,4 +791,14 @@ document.addEventListener("keydown", function (evento) {
   if (evento.key === "Escape" && !popupConferir.hidden) {
     fecharConferir();
   }
+});
+
+// ===== Reiniciar =====
+// Começa uma nova partida com o mesmo nome: novo sorteio, pontos, chances e timer zerados.
+const botaoReiniciar = document.getElementById("botao-reiniciar");
+
+botaoReiniciar.addEventListener("click", function () {
+  fecharPopup(popupConferir);
+  mostrarTela("tela-jogo");
+  iniciarPartida();
 });
