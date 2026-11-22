@@ -250,8 +250,8 @@ input,
 }
 
 .logo-moldura {
-  width: 160px;
-  height: 160px;
+  width: min(220px, 60vw);
+  height: min(220px, 60vw);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -260,7 +260,6 @@ input,
 .logo {
   max-width: 100%;
   max-height: 100%;
-  image-rendering: pixelated;
 }
 
 /* Reserva exibida enquanto assets/logo/logo.png não existir */
