@@ -609,6 +609,41 @@ input,
   color: var(--deep-forest);
 }
 
+/* Contador de acertos: barra de progresso em blocos */
+.barra-acertos {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  max-width: 360px;
+}
+
+.barra-trilho {
+  width: 100%;
+  height: 24px;
+  padding: 3px;
+  background-color: var(--earth-beige);
+  border: 3px solid var(--deep-forest);
+}
+
+.barra-preenchida {
+  width: 0;
+  height: 100%;
+  transition: width 800ms steps(16);
+}
+
+.barra-preenchida.faixa-vermelha { background-color: var(--vermelho-erro); }
+.barra-preenchida.faixa-laranja  { background-color: var(--sunset-orange); }
+.barra-preenchida.faixa-amarela  { background-color: var(--sunlight-yellow); }
+.barra-preenchida.faixa-verde    { background-color: var(--meadow-green); }
+
+.texto-acertos {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+}
+
 /* ===== Pop-ups (fim de jogo e conferir) ===== */
 .popup-fundo {
   position: fixed;

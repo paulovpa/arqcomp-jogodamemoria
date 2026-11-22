@@ -550,14 +550,17 @@ function fecharPopup(popup) {
 // "Ver placar": fecha o pop-up e vai para a tela de placar final.
 botaoVerPlacar.addEventListener("click", function () {
   fecharPopup(popupFim);
-  preencherPlacar();
   mostrarTela("tela-placar");
+  preencherPlacar(); // depois de mostrar a tela, para a barra animar
 });
 
 // ===== Tela de placar final =====
 const mensagemDesempenho = document.getElementById("mensagem-desempenho");
 const nomeFinal = document.getElementById("nome-final");
 const pontosFinal = document.getElementById("pontos-final");
+const barraTrilho = document.getElementById("barra-trilho");
+const barraPreenchida = document.getElementById("barra-preenchida");
+const textoAcertos = document.getElementById("texto-acertos");
 
 // Mensagem de acordo com a quantidade de acertos (textos da especificação).
 function mensagemPorAcertos(totalAcertos) {
@@ -578,4 +581,31 @@ function preencherPlacar() {
   mensagemDesempenho.textContent = mensagemPorAcertos(acertos);
   nomeFinal.textContent = nomeJogador;
   pontosFinal.textContent = pontos;
+  atualizarBarraAcertos(acertos);
+}
+
+// Cor da barra por faixa de acertos:
+// 0–4 vermelha, 5–9 laranja, 10–11 amarela, 12–16 verde.
+function classeDaBarra(totalAcertos) {
+  if (totalAcertos < 5) {
+    return "faixa-vermelha";
+  } else if (totalAcertos < 10) {
+    return "faixa-laranja";
+  } else if (totalAcertos < 12) {
+    return "faixa-amarela";
+  } else {
+    return "faixa-verde";
+  }
+}
+
+function atualizarBarraAcertos(totalAcertos) {
+  const porcentagem = (totalAcertos / TOTAL_QUESTOES) * 100;
+  // Começa vazia e enche até a porcentagem (a leitura de offsetWidth
+  // força o navegador a aplicar a largura 0 antes da animação).
+  barraPreenchida.style.width = "0";
+  void barraPreenchida.offsetWidth;
+  barraPreenchida.style.width = porcentagem + "%";
+  barraPreenchida.className = "barra-preenchida " + classeDaBarra(totalAcertos);
+  barraTrilho.setAttribute("aria-valuenow", totalAcertos);
+  textoAcertos.textContent = totalAcertos + "/" + TOTAL_QUESTOES + " acertadas";
 }
