@@ -444,6 +444,8 @@ function encerrarPartida() {
   aceitandoCliques = false;
   pararTimer();
   bloquearTabuleiro();
+  abrirPopup(popupFim);
+  botaoVerPlacar.focus();
 }
 
 // Bloqueia todos os cards que ainda estão no tabuleiro.
@@ -532,3 +534,21 @@ document.addEventListener("click", function (evento) {
 
 // Sem um ouvinte de toque, alguns navegadores de celular não aplicam o :active.
 document.addEventListener("touchstart", function () {}, { passive: true });
+
+// ===== Pop-ups =====
+const popupFim = document.getElementById("popup-fim");
+const botaoVerPlacar = document.getElementById("botao-ver-placar");
+
+function abrirPopup(popup) {
+  popup.hidden = false;
+}
+
+function fecharPopup(popup) {
+  popup.hidden = true;
+}
+
+// "Ver placar": fecha o pop-up e vai para a tela de placar final.
+botaoVerPlacar.addEventListener("click", function () {
+  fecharPopup(popupFim);
+  mostrarTela("tela-placar");
+});
