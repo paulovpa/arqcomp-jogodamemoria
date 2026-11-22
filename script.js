@@ -47,7 +47,7 @@ const TERMOS = [
     termo: "UC",
     analogia: "Torre de controle",
     porque: "Decide quem decola e quando.",
-    pista: "Parte da CPU que coordena os demais componentes, é ela que da ordens para ULA e outras partes.",
+    pista: "Parte da CPU que coordena os demais componentes, é ela que dá ordens para ULA e outras partes.",
     imagem: "assets/cards/torre-controle.jpg"
   },
   {
@@ -68,7 +68,7 @@ const TERMOS = [
     termo: "ROM",
     analogia: "Guia de viagem impresso",
     porque: "Só dá para ler e não dá para alterar.",
-    pista: "É uma memória não volátil gravada na fabricação, que contém instruções e configurações básicas para o computador ligar, e as primeiras nunca mais poderiam ser regravadas",
+    pista: "É uma memória não volátil gravada na fabricação, que contém instruções e configurações básicas para o computador ligar, e as primeiras nunca mais poderiam ser regravadas.",
     imagem: "assets/cards/guia-viagem.jpg"
   },
   {
@@ -110,7 +110,7 @@ const TERMOS = [
     termo: "Address bus",
     analogia: "Número do portão de embarque",
     porque: "Diz para onde ir.",
-    pista: "Linhas ou trilhas condutoras que ficam na placa-mãe, ligam a CPU a memória e que indicam em qual posição da RAM a CPU vai ler ou escrever.",
+    pista: "Linhas ou trilhas condutoras que ficam na placa-mãe, ligam a CPU à memória e que indicam em qual posição da RAM a CPU vai ler ou escrever.",
     imagem: "assets/cards/numero-portao.jpg"
   },
   {
@@ -124,7 +124,7 @@ const TERMOS = [
     termo: "Microcontrolador",
     analogia: "Fechadura eletrônica do quarto de hotel",
     porque: "Faz uma única tarefa sozinha, que é abrir com o cartão-chave.",
-    pista: "É um pequeno chip único que contém CPU, RAM, periféricos e memória não volátil que guarda o firmware. É muito utilizado em dispositivos que tem uma tarefa específica, como um pen-drive ou arduino.",
+    pista: "É um pequeno chip único que contém CPU, RAM, periféricos e memória não volátil que guarda o firmware. É muito utilizado em dispositivos que têm uma tarefa específica, como um pen-drive ou arduino.",
     imagem: "assets/cards/fechadura-hotel.webp"
   },
   {
