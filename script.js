@@ -130,6 +130,7 @@ let ordemQuestoes = []; // índices de TERMOS na ordem sorteada das questões
 let questaoAtual = 0;   // posição em ordemQuestoes (0 a 15)
 let pontos = 0;
 let acertos = 0;
+let chancesRestantes = CHANCES;
 let resultados = [];    // um item por questão: { indice, acertou } (usado no "Conferir")
 let aceitandoCliques = false; // false durante a pausa entre questões e no fim do jogo
 
@@ -258,6 +259,7 @@ function iniciarPartida() {
   questaoAtual = 0;
   pontos = 0;
   acertos = 0;
+  chancesRestantes = CHANCES;
   resultados = [];
   aceitandoCliques = true;
 
@@ -337,9 +339,19 @@ function responderCerto(card) {
   }, PAUSA_ENTRE_QUESTOES);
 }
 
-// Erro: card vermelho, sem pontos.
+// Erro: card vermelho e bloqueado nesta questão, sem pontos e com uma chance a menos.
+// Sem chances, a questão conta como errada e o jogo passa para a próxima.
 function responderErrado(card) {
   card.classList.add("errado");
+  card.disabled = true;
+  chancesRestantes = chancesRestantes - 1;
+  atualizarChances(chancesRestantes);
+
+  if (chancesRestantes === 0) {
+    aceitandoCliques = false;
+    resultados.push({ indice: ordemQuestoes[questaoAtual], acertou: false });
+    setTimeout(avancarQuestao, PAUSA_ENTRE_QUESTOES);
+  }
 }
 
 // Limpa os cards errados da questão anterior (os removidos continuam vazios).
@@ -359,6 +371,8 @@ function avancarQuestao() {
   questaoAtual = questaoAtual + 1;
 
   if (questaoAtual < TOTAL_QUESTOES) {
+    chancesRestantes = CHANCES;
+    atualizarChances(chancesRestantes);
     exibirQuestao(TERMOS[ordemQuestoes[questaoAtual]], questaoAtual + 1);
     aceitandoCliques = true;
   } else {
