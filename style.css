@@ -245,3 +245,88 @@ input,
 .chance.perdida {
   color: var(--earth-beige);
 }
+
+/* ===== Pergunta ===== */
+.area-pergunta {
+  text-align: center;
+}
+
+.contador-questao {
+  margin: 0 0 6px;
+  font-size: 14px;
+}
+
+.pergunta {
+  margin: 0;
+  font-size: 14px;
+}
+
+/* ===== Card da imagem questionada ===== */
+.area-questao {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  max-width: 420px;
+}
+
+.card-questao {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--cloud-white);
+  border: 4px solid var(--deep-forest);
+  box-shadow: 6px 6px 0 var(--deep-forest);
+  overflow: hidden;
+}
+
+.imagem-questao {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  image-rendering: pixelated;
+}
+
+/* Reserva exibida enquanto a imagem do card não existir */
+.reserva-questao {
+  display: none;
+  padding: 12px;
+  font-size: 18px;
+  text-align: center;
+  color: var(--cloud-white);
+}
+
+.card-questao.sem-imagem {
+  background-color: var(--mountain-blue);
+}
+
+.card-questao.sem-imagem .imagem-questao {
+  display: none;
+}
+
+.card-questao.sem-imagem .reserva-questao {
+  display: block;
+}
+
+.descricao,
+.pista {
+  margin: 0;
+  width: 100%;
+  padding: 8px 12px;
+  text-align: center;
+  font-size: 14px;
+  background-color: var(--cloud-white);
+  border: 3px solid var(--deep-forest);
+}
+
+.descricao {
+  font-weight: 600;
+}
+
+.pista {
+  background-color: var(--sunlight-yellow);
+}

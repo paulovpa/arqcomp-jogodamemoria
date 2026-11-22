@@ -165,6 +165,7 @@ formNome.addEventListener("submit", function (evento) {
     erroNome.textContent = "";
     nomeJogador = nome;
     mostrarTela("tela-jogo");
+    iniciarPartida();
   }
 });
 
@@ -193,4 +194,38 @@ function atualizarChances(chancesRestantes) {
     }
     elementoChances.appendChild(icone);
   }
+}
+
+// ===== Card da imagem questionada =====
+const contadorQuestao = document.getElementById("contador-questao");
+const molduraQuestao = document.getElementById("moldura-questao");
+const imagemQuestao = document.getElementById("imagem-questao");
+const reservaQuestao = document.getElementById("reserva-questao");
+const descricaoQuestao = document.getElementById("descricao-questao");
+const pistaQuestao = document.getElementById("pista-questao");
+
+// Se a imagem não existir, mostra a analogia escrita no lugar.
+imagemQuestao.addEventListener("error", function () {
+  molduraQuestao.classList.add("sem-imagem");
+});
+imagemQuestao.addEventListener("load", function () {
+  molduraQuestao.classList.remove("sem-imagem");
+});
+
+// Preenche o card com a imagem, a descrição (analogia + porquê) e a pista.
+function exibirQuestao(item, numeroQuestao) {
+  contadorQuestao.textContent = "Questão " + numeroQuestao + "/" + TOTAL_QUESTOES;
+  reservaQuestao.textContent = item.analogia;
+  imagemQuestao.alt = item.analogia;
+  imagemQuestao.src = item.imagem;
+  descricaoQuestao.textContent = item.analogia + ": " + item.porque;
+  pistaQuestao.textContent = "Pista: " + item.pista;
+}
+
+// ===== Início da partida =====
+function iniciarPartida() {
+  atualizarPontuacao(0);
+  atualizarTimer(TEMPO_POR_QUESTAO);
+  atualizarChances(CHANCES);
+  exibirQuestao(TERMOS[0], 1);
 }
