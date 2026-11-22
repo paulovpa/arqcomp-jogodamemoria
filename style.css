@@ -30,7 +30,7 @@ body {
    2. a imagem sorteada no script.js (variável --fundo-partida);
    3. degradê da paleta, que aparece se a imagem não carregar. */
 :root {
-  --camada-suave: rgba(255, 255, 255, 0.35);
+  --camada-suave: rgba(255, 255, 255, 0.5);
 }
 
 body::before {
