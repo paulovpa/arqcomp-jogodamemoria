@@ -295,6 +295,87 @@ input,
   background-color: var(--forest-green);
 }
 
+/* ===== Card informativo do palácio da memória =====
+   Mesma largura da caixa de início, mais baixo e com borda e sombra menores,
+   para ficar secundário em relação ao botão Play. */
+.card-palacio {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  max-width: 480px;
+  margin-top: 20px;
+  padding: 14px 18px;
+  text-align: left;
+  background-color: var(--cloud-white);
+  border: 3px solid var(--deep-forest);
+  box-shadow: 4px 4px 0 var(--deep-forest);
+}
+
+.card-palacio-icone {
+  flex-shrink: 0;
+  font-size: 32px;
+  color: var(--mountain-blue);
+}
+
+.card-palacio-textos {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.card-palacio-frase {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--deep-forest);
+}
+
+.card-palacio-descricao {
+  margin: 0;
+  font-family: var(--fonte-texto);
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--deep-forest);
+}
+
+/* Botão-pergunta com cara de link, para não competir com o Play */
+.botao-palacio {
+  padding: 2px 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--forest-green);
+  background: none;
+  border: none;
+  border-bottom: 2px dashed var(--forest-green);
+  cursor: pointer;
+}
+
+.botao-palacio:hover {
+  color: var(--deep-forest);
+  border-bottom-style: solid;
+  border-bottom-color: var(--deep-forest);
+}
+
+.botao-palacio:focus-visible {
+  outline: 3px solid var(--mountain-blue);
+  outline-offset: 3px;
+}
+
+/* Celular: ícone em cima e texto embaixo */
+@media (max-width: 599px) {
+  .card-palacio {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+
+  .card-palacio-textos {
+    align-items: center;
+  }
+}
+
 /* ===== Formulário do nome ===== */
 .form-nome {
   display: flex;
