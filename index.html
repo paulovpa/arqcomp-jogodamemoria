@@ -181,6 +181,36 @@
     </div>
   </div>
 
+  <!-- Pop-up Palácio da memória: explica a técnica usada no jogo -->
+  <div id="popup-palacio" class="popup-fundo" hidden>
+    <div class="popup popup-palacio" role="dialog" aria-modal="true" aria-labelledby="titulo-palacio">
+      <h2 id="titulo-palacio" class="popup-titulo">🏛️ O palácio da memória</h2>
+
+      <div class="bloco-palacio">
+        <h3 class="subtitulo-palacio">O que é?</h3>
+        <p>É uma técnica de memorização muito antiga, também chamada de método de loci ("lugares", em latim). Você imagina um caminho que conhece e coloca em cada ponto dele uma imagem ligada ao que quer lembrar. Para recordar, basta "andar" de novo por esse caminho.</p>
+      </div>
+
+      <div class="bloco-palacio">
+        <h3 class="subtitulo-palacio">Por que funciona?</h3>
+        <p>O cérebro guarda cenas e lugares muito mais fácil do que definições soltas. A imagem vira um gancho para o conceito.</p>
+      </div>
+
+      <div class="bloco-palacio">
+        <h3 class="subtitulo-palacio">Como aparece no jogo?</h3>
+        <p>Aqui o caminho é uma viagem, e cada um dos 16 termos virou um personagem ou objeto dela:</p>
+        <ul class="lista-palacio">
+          <li>✈️ <strong>CPU</strong> é o piloto do avião, que comanda e executa as instruções.</li>
+          <li>🎒 <strong>RAM</strong> é a mala de mão: rápida de acessar, mas guarda só o que está em uso.</li>
+          <li>🛄 <strong>DMA</strong> é a esteira de bagagem, que leva os dados sem ocupar o piloto.</li>
+        </ul>
+        <p>A cada questão aparece uma pista. Imagine a cena e encontre o card que combina com ela.</p>
+      </div>
+
+      <button id="botao-fechar-palacio" class="botao" type="button">Entendi, bora viajar!</button>
+    </div>
+  </div>
+
   <script src="script.js" defer></script>
 </body>
 </html>
