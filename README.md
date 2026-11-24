@@ -10,6 +10,8 @@ Um jogo da memória para aprender os termos de arquitetura computacional viajand
 
 O jogo usa o **método loci** (palácio da memória), uma técnica que associa cada informação a uma imagem e a um lugar. Em vez de decorar definições soltas, o jogador liga cada termo a uma cena da viagem, o que torna a memorização mais fácil e duradoura.
 
+Na tela inicial, um card explicativo apresenta essa técnica. Ao clicar em **Como funciona o palácio da memória?**, abre um pop-up que mostra, de forma curta, o que é o método, por que ele funciona e como ele aparece no jogo.
+
 ## Como jogar
 
 1. Na tela inicial, clique no botão **Play** (▶).
