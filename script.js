@@ -803,6 +803,38 @@ document.addEventListener("keydown", function (evento) {
   }
 });
 
+// ===== Pop-up Palácio da memória =====
+// Só mostra e esconde o pop-up: não mexe no formulário de nome nem no jogo.
+const popupPalacio = document.getElementById("popup-palacio");
+const botaoPalacio = document.getElementById("botao-palacio");
+const botaoFecharPalacio = document.getElementById("botao-fechar-palacio");
+
+function abrirPopupPalacio() {
+  abrirPopup(popupPalacio);
+  botaoFecharPalacio.focus();
+}
+
+function fecharPopupPalacio() {
+  fecharPopup(popupPalacio);
+  botaoPalacio.focus();
+}
+
+botaoPalacio.addEventListener("click", abrirPopupPalacio);
+botaoFecharPalacio.addEventListener("click", fecharPopupPalacio);
+
+// Fecha também ao clicar no fundo escuro ou apertar Esc.
+popupPalacio.addEventListener("click", function (evento) {
+  if (evento.target === popupPalacio) {
+    fecharPopupPalacio();
+  }
+});
+
+document.addEventListener("keydown", function (evento) {
+  if (evento.key === "Escape" && !popupPalacio.hidden) {
+    fecharPopupPalacio();
+  }
+});
+
 // ===== Reiniciar =====
 // Começa uma nova partida com o mesmo nome: novo sorteio, pontos, chances e timer zerados.
 const botaoReiniciar = document.getElementById("botao-reiniciar");
